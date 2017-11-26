@@ -1,0 +1,47 @@
+fastlane_version "2.64.0"
+
+default_platform :ios
+
+platform :ios do
+  before_all do
+  end
+
+  # - Private
+  private_lane :build do |options|
+    install_deps_and_test_code
+  end
+
+  private_lane :install_deps_and_test_code do
+    sh("cd ../.. && yarn")
+    increment_build_number
+    gym(scheme: 'shine')
+  end
+
+  # - Public
+
+  desc "Fetch all production/staging certificates and provisioning profiles"
+  lane :codesigning do |options|
+    admin = (!is_ci and options[:admin]) || false
+
+    ["development", "adhoc", "appstore"].each do |type|
+      match(
+        type: type,
+        readonly: !admin,
+        force_for_new_devices: admin
+      )
+    end
+  end
+
+  desc "Submit a new Beta Build to Apple TestFlight"
+  lane :beta do
+    match(type: "appstore")
+    build
+    pilot
+  end
+
+  after_all do |lane|
+  end
+
+  error do |lane, exception|
+  end
+end

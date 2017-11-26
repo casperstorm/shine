@@ -1,0 +1,85 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:import/errors",
+    "prettier",
+    "prettier/react"
+  ],
+  "plugins": [
+    "import",
+    "react",
+    "react-native",
+    "prettier"
+  ],
+  "globals": {
+    "__DEV__": true,
+    "FormData": true,
+    "fetch": true,
+    "Promise": true
+  },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "jest": true,
+    "browser": true
+  },
+  "settings": {
+    "import/resolver": "react-native"
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 90,
+        "semi": false
+      }
+    ],
+    "react-native/no-unused-styles": 2,
+    "react-native/no-inline-styles": 2,
+    "react-native/no-color-literals": 2,
+    "react-native/split-platform-components": 2,
+    "import/no-unresolved": [
+      2,
+      {
+        "commonjs": true
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      2,
+      {
+        "devDependencies": [
+          "**/*.test.js",
+          "**/*.stories.js"
+        ]
+      }
+    ],
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal"
+        ],
+        "newlines-between": "ignore"
+      }
+    ],
+    "import/default": 0,
+    "no-unused-vars": [
+      "error",
+      {
+        "vars": "all",
+        "args": "none",
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-console": 0
+  }
+}
