@@ -1,6 +1,6 @@
 import * as Types from './types'
 
-const initialState = {
+export const initialState = {
   welcome: null,
 }
 
