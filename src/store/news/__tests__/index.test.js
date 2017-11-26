@@ -10,6 +10,6 @@ it(`should respond to action with type '${NEWS_UPDATED}'`, () => {
   const action = { type: NEWS_UPDATED, data: date }
   expect(reducer(undefined, action)).toEqual({
     ...initialState,
-    updated: date
+    updated: date,
   })
 })
