@@ -5,6 +5,7 @@
     "plugin:react/recommended",
     "plugin:import/errors",
     "prettier",
+    "prettier/flowtype",
     "prettier/react"
   ],
   "plugins": [
