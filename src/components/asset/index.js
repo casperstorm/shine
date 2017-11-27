@@ -8,15 +8,15 @@ class Asset {}
 class Icon extends Image {}
 
 class Button extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
 
     this.state = {
-      pressed: false
+      pressed: false,
     }
   }
 
-  renderImage () {
+  renderImage() {
     let icon = this.props.icon
     let iconPressed = this.props.iconPressed ? this.props.iconPressed : icon
 
@@ -24,17 +24,20 @@ class Button extends Component {
     return this.state.pressed ? iconPressed : icon
   }
 
-  render () {
+  render() {
     let onPressOut = () => {
       this.setState({ pressed: false })
     }
 
     return (
       <TouchableOpacity
-        { ...this.props }
-        activeOpacity={ this.props.iconPressed ? 1 : 0.2 }
-        onPressIn={() => { this.setState({ pressed: true }) }}
-        onPressOut={onPressOut}>
+        {...this.props}
+        activeOpacity={this.props.iconPressed ? 1 : 0.2}
+        onPressIn={() => {
+          this.setState({ pressed: true })
+        }}
+        onPressOut={onPressOut}
+      >
         {this.renderImage()}
       </TouchableOpacity>
     )
@@ -46,7 +49,7 @@ Button.propTypes = {
   iconPressed: PropTypes.node,
   iconDisabled: PropTypes.node,
   disabled: PropTypes.bool,
-  onPress: PropTypes.func
+  onPress: PropTypes.func,
 }
 
 /*
@@ -63,11 +66,7 @@ Icon.Negative = () => <Icon source={require('../../../assets/images/icSkull.png'
 Icon.Positive = () => <Icon source={require('../../../assets/images/icHeart.png')} />
 /* eslint-enable prettier/prettier */
 
-Button.LogoDark = (props) => (
-  <Button
-    { ...props }
-    icon={<Icon.LogoDark />} />
-)
+Button.LogoDark = props => <Button {...props} icon={<Icon.LogoDark />} />
 
 /* eslint-enable react/display-name */
 

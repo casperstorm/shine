@@ -8,7 +8,7 @@ import NewsScreen from './screens/news'
 import * as reducers from './store/reducers'
 
 class Main {
-  constructor () {
+  constructor() {
     const middleware = applyMiddleware(thunk)
     const reducer = combineReducers(reducers)
     const store = createStore(reducer, middleware)
@@ -16,17 +16,17 @@ class Main {
     this.registerScreens(store, Provider)
   }
 
-  registerScreens (store, provider) {
+  registerScreens(store, provider) {
     /* eslint-disable prettier/prettier */
     Navigation.registerComponent('Shine.News', () => NewsScreen, store, provider)
     /* eslint-enable prettier/prettier */
   }
 
-  start () {
+  start() {
     Navigation.startSingleScreenApp({
       screen: {
-        screen: 'Shine.News'
-      }
+        screen: 'Shine.News',
+      },
     })
   }
 }
