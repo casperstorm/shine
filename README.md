@@ -7,6 +7,11 @@
 Shine is a app cryptocurrency news aggregator for iOS and Android.
 Currently using data from [cryptopanic.com](https://cryptopanic.com/), provided through their API.
 
+## Current state
+Shine is currently working on both platforms with a few issues here and there. Once all the small issues has been fixed, it will be released to AppStore and Google Play Store.
+
+It will stay as a open source project.
+
 ## Running
 ```
 git clone git@github.com:casperstorm/shine.git
