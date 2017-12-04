@@ -26,6 +26,16 @@ open coverage/index.html
 ```
 This will open a page which will display a code coverage report.
 
+## Storybook
+
+This project has [Storybook](https://github.com/storybooks/storybook)
+
+Run
+```
+yarn storybook
+yarn ios # or yarn android
+```
+
 ## Acknowledgement
 [Rasmus](http://rasmusnielsen.dk/)— for the design.
 
