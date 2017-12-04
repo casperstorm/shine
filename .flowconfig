@@ -16,6 +16,9 @@
 ; Ignore polyfills
 .*/Libraries/polyfills/.*
 
+; issues with radium
+.*node_modules/radium/src/*
+
 [include]
 
 [libs]

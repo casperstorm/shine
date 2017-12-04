@@ -15,7 +15,8 @@
 		"test:coverage": "yarn test --coverage",
 		"test:watch": "yarn test --watch",
 		"check": "yarn lint && yarn test && yarn flow",
-		"check-ci": "yarn clean && yarn lint:bail && yarn test && yarn flow"
+		"check-ci": "yarn clean && yarn lint:bail && yarn test && yarn flow",
+		"storybook": "storybook start -p 7007"
 	},
 	"dependencies": {
 		"lodash": "^4.17.4",
@@ -49,7 +50,11 @@
 		"jest": "21.2.1",
 		"lint-staged": "^5.0.0",
 		"prettier": "^1.8.2",
-		"react-test-renderer": "16.0.0-beta.5"
+		"react-test-renderer": "16.0.0-beta.5",
+		"@storybook/react-native": "^3.2.16",
+		"@storybook/addon-actions": "^3.2.16",
+		"@storybook/addon-links": "^3.2.16",
+		"react-dom": "16.0.0-beta.5"
 	},
 	"lint-staged": {
 		"src/**/*.js": [
