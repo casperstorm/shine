@@ -5,7 +5,8 @@ import { Navigation } from 'react-native-navigation'
 
 // import stories
 configure(() => {
-  require('./stories')
+  require('./stories/components/news-cell.stories')
+  require('./stories/components/jumbo-cell.stories')
 }, module)
 
 // This assumes that storybook is running on the same host as your RN packager,
