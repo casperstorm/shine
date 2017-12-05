@@ -5,19 +5,27 @@
 <img src="./assets/marketing/marketing.png" width="80%">
 
 Shine is a app cryptocurrency news aggregator for iOS and Android.
-Currently using data from [cryptopanic.com](https://cryptopanic.com/), provided through their API.
+Currently based upon the API from [CryptoPanic](https://cryptopanic.com/).
 
-## Current state
-Shine is currently working on both platforms with a few issues here and there. Once all the small issues has been fixed, it will be released to AppStore and Google Play Store.
+## Prerequisite
+Before using Shine, you need to aquire an [API token from CryptoPanic](https://cryptopanic.com/about/api/), in order to fetch the data.
+Once this has been aquirred, you can create the needed environment file: 
 
-It will stay as a open source project.
+```
+touch src/config/.env.production
+```
+
+Inside `.env.production`, add the following:
+
+```
+API_URL=https://cryptopanic.com/api/posts/?auth_token={API_TOKEN}
+```
 
 ## Running
 ```
-git clone git@github.com:casperstorm/shine.git
-cd shine && yarn install
+yarn install
+yarn ios # or yarn android
 ```
-Then run either `yarn ios` or `yarn android` to launch the app on the desired platform.
 
 ## Testing
 ```
@@ -30,7 +38,6 @@ This will open a page which will display a code coverage report.
 
 This project has [Storybook](https://github.com/storybooks/storybook)
 
-Run
 ```
 yarn storybook
 yarn ios # or yarn android
