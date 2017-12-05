@@ -3,7 +3,6 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { View, SectionList, Linking, ActivityIndicator } from 'react-native'
 import moment from 'moment'
-import Config from 'react-native-config'
 
 import JumboCell from '../../components/jumbo-cell'
 import NewsCell from '../../components/news-cell'
@@ -161,7 +160,6 @@ class NewsScreen extends React.Component<Props, State> {
   )
 
   render() {
-    console.log(Config.API_URL)
     return (
       <View style={styles.container}>
         {!this.state.hasShownIntro && this.renderIntro()}
