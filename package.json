@@ -3,8 +3,8 @@
 	"version": "0.0.1",
 	"private": true,
 	"scripts": {
-		"ios": "ENVFILE=src/config/.env.production react-native run-ios",
-		"android": "ENVFILE=src/config/.env.production react-native run-android",
+		"ios": "ENVFILE=src/config/.env.config react-native run-ios",
+		"android": "ENVFILE=src/config/.env.config react-native run-android",
 		"start": "react-native start",
 		"clean": "rm -rf android/build ios/build android/app/build *.log",
 		"precommit": "lint-staged",

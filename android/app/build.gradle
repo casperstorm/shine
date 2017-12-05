@@ -72,11 +72,6 @@ import com.android.build.OutputFile
  * ]
  */
 
-project.ext.envConfigFiles = [
-        debug: "./src/config/.env.production",
-        release: "./src/config/.env.production",
-]
-
 project.ext.react = [
     entryFile: "index.android.js"
 ]

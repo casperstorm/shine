@@ -2,6 +2,7 @@ package com.cryptoshine;
 
 import com.facebook.react.ReactPackage;
 import com.reactnativenavigation.NavigationApplication;
+import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -18,7 +19,7 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-            // eg. new VectorIconsPackage()
+      new ReactNativeConfigPackage()
     );
   }
 
