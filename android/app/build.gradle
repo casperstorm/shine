@@ -72,11 +72,17 @@ import com.android.build.OutputFile
  * ]
  */
 
+project.ext.envConfigFiles = [
+        debug: "./src/config/.env.production",
+        release: "./src/config/.env.production",
+]
+
 project.ext.react = [
     entryFile: "index.android.js"
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
+apply from: project(':react-native-config').projectDir.getPath() + "/dotenv.gradle"
 
 /**
  * Set this to true to create two separate APKs instead of one:
@@ -137,6 +143,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-config')
     compile project(':react-native-image-sequence')
     compile fileTree(dir: "libs", include: ["*.jar"])
     compile "com.android.support:appcompat-v7:23.0.1"
