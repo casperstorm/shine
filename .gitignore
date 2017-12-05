@@ -52,3 +52,7 @@ coverage/
 */fastlane/screenshots
 */fastlane/Appfile
 */fastlane/Matchfile
+
+# Environment
+
+/src/config/.env.production
