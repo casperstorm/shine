@@ -1,8 +1,5 @@
-import _ from 'lodash'
-
-import * as Types from './types'
-
-const messages = [
+/* @flow */
+export const Greetings = [
   `Latest news\nfrom Cryptoland 🚀`,
   `Enjoy todays\ncrypto news 🙂`,
   `Lets hope it is\na green day today!`,
@@ -14,8 +11,3 @@ const messages = [
   `Where we're going\nwe dont need fiat 🚀`,
   `Today is a\ngood day to HODL 🙌`,
 ]
-
-const welcome = () => (dispatch, getState) =>
-  dispatch({ type: Types.WELCOME_MESSAGE, data: _.sample(messages) })
-
-export { welcome }

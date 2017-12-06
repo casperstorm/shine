@@ -1,19 +1,45 @@
+/* @flow */
 import Config from 'react-native-config'
 
-import * as Types from './types'
+import type { ThunkAction } from '../types'
+import { Greetings } from '../../utils/greetings'
 
-const sort = (a, b) =>
-  new Date(b.published_at).getTime() - new Date(a.published_at).getTime()
+export const actionTypes = {
+  NEWS_FETCH: 'NEWS_FETCH',
+  NEWS_DATE: 'NEWS_DATE',
+  NEWS_GREETINGS: 'NEWS_GREETINGS',
+}
 
-const load = () => (dispatch, getState) =>
+export type ActionNewsFetch = {
+  type: 'NEWS_FETCH',
+  value: Array<Object>,
+}
+
+export type ActionNewsGreetings = {
+  type: 'NEWS_GREETINGS',
+  value: Array<string>,
+}
+
+export type ActionNewsDate = {
+  type: 'NEWS_DATE',
+  value: Date,
+}
+
+export type Action = ActionNewsGreetings | ActionNewsDate | ActionNewsFetch
+
+export const newsFetch = (): ThunkAction => (dispatch, getState) =>
   fetch(Config.API_URL)
     .then(response => response.json())
-    .then(dispatch(updated(new Date())))
     .then(json => {
-      dispatch({ type: Types.NEWS_LOAD, data: json.results.sort(sort) })
+      dispatch({ type: actionTypes.NEWS_FETCH, value: json.results })
     })
 
-const updated = date => (dispatch, getState) =>
-  dispatch({ type: Types.NEWS_UPDATED, data: date })
+export const newsDate = (date: Date): ActionNewsDate => ({
+  type: actionTypes.NEWS_DATE,
+  value: date,
+})
 
-export { load, updated }
+export const newsGreetings = (): ActionNewsGreetings => ({
+  type: actionTypes.NEWS_GREETINGS,
+  value: Greetings,
+})

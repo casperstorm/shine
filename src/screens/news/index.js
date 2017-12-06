@@ -11,15 +11,15 @@ import Asset from '../../components/asset'
 import FadeView from '../../components/fade-view'
 
 import * as newsActions from '../../store/news/actions'
-import * as sharedActions from '../../store/shared/actions'
+import * as selectors from '../../store/selectors'
 
 import styles, { navigatorStyle } from './styles'
 
 type Props = {
-  news: Array<any>,
-  newsLoad: Function,
-  welcomeLoad: Function,
-  welcome?: string,
+  news: Array<Object>,
+  newsFetch: Function,
+  newsGreetings: Function,
+  greetings?: string,
   updated?: string,
 }
 
@@ -59,8 +59,8 @@ class NewsScreen extends React.Component<Props, State> {
 
   refreshData = () => {
     this.props
-      .newsLoad()
-      .then(() => this.props.welcomeLoad())
+      .newsFetch()
+      .then(() => this.props.newsGreetings())
       .then(() => this.setState({ isRefreshing: false, hasContent: true }))
 
     setInterval(() => {
@@ -87,7 +87,7 @@ class NewsScreen extends React.Component<Props, State> {
         data: [
           {
             key: 'jumbo',
-            title: this.props.welcome,
+            title: this.props.greetings,
             description: this.state.lastRefreshedDate
               ? `Updated ${this.state.lastRefreshedDate}`
               : null,
@@ -160,6 +160,7 @@ class NewsScreen extends React.Component<Props, State> {
   )
 
   render() {
+    console.log(this.props.greetings)
     return (
       <View style={styles.container}>
         {!this.state.hasShownIntro && this.renderIntro()}
@@ -173,14 +174,14 @@ class NewsScreen extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  news: state.news.data,
-  updated: state.news.updated,
-  welcome: state.shared.welcome,
+  news: selectors.sortedNewsItems(state),
+  updated: state.news.date,
+  greetings: selectors.selectRandomGreetings(state),
 })
 
 const mapDispatchToProps = {
-  newsLoad: newsActions.load,
-  welcomeLoad: sharedActions.welcome,
+  newsFetch: newsActions.newsFetch,
+  newsGreetings: newsActions.newsGreetings,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen)

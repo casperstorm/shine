@@ -1,1 +1,0 @@
-export const WELCOME_MESSAGE = 'WELCOME_MESSAGE'

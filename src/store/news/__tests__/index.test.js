@@ -1,26 +1,34 @@
-import { NEWS_LOAD, NEWS_UPDATED } from '../types'
 import reducer, { initialState } from '../reducer'
+import { newsGreetings, newsDate } from '../actions'
+import { Greetings } from '../../../utils/greetings'
 
 describe('reducer', () => {
   it('should return initial state', () => {
-    expect(reducer(undefined, { data: [], updated: null })).toEqual(initialState)
+    expect(reducer(undefined, {})).toEqual(initialState)
   })
 
-  it(`should respond to action with type '${NEWS_LOAD}'`, () => {
-    const data = { id: 42 }
-    const action = { type: NEWS_LOAD, data: data }
+  // it(`should respond to newsFetch action`, () => {
+  //   const action1 = newsFetch()
+  //   expect(reducer(undefined, action1)).toEqual({
+  //     ...initialState,
+  //     data: [{ foo: 'bar' }],
+  //   })
+  // })
+
+  it(`should respond to newsGreetings action`, () => {
+    const action = newsGreetings()
     expect(reducer(undefined, action)).toEqual({
       ...initialState,
-      data: data,
+      greetings: Greetings,
     })
   })
 
-  it(`should respond to action with type '${NEWS_UPDATED}'`, () => {
+  it(`should respond to newsDate action`, () => {
     const date = new Date()
-    const action = { type: NEWS_UPDATED, data: date }
-    expect(reducer(undefined, action)).toEqual({
+    const action3 = newsDate(date)
+    expect(reducer(undefined, action3)).toEqual({
       ...initialState,
-      updated: date,
+      date: date,
     })
   })
 })
