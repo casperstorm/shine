@@ -44,7 +44,7 @@ yarn ios # or yarn android
 ```
 
 ## Acknowledgement
-[Rasmus](http://rasmusnielsen.dk/)— for the design.
+[Rasmus Nielsen](http://rasmusnielsen.dk/) — design ✨
 
 ## License
 
