@@ -27,19 +27,19 @@ export type ActionNewsDate = {
 
 export type Action = ActionNewsGreetings | ActionNewsDate | ActionNewsFetch
 
-export const newsFetch = (): ThunkAction => (dispatch, getState) =>
+export const itemsFetch = (): ThunkAction => (dispatch, getState) =>
   fetch(Config.API_URL)
     .then(response => response.json())
     .then(json => {
       dispatch({ type: actionTypes.NEWS_FETCH, value: json.results })
     })
 
-export const newsDate = (date: Date): ActionNewsDate => ({
+export const updatedDate = (date: Date): ActionNewsDate => ({
   type: actionTypes.NEWS_DATE,
   value: date,
 })
 
-export const newsGreetings = (): ActionNewsGreetings => ({
+export const greetings = (): ActionNewsGreetings => ({
   type: actionTypes.NEWS_GREETINGS,
   value: Greetings,
 })

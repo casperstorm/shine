@@ -16,11 +16,14 @@ import * as selectors from '../../store/selectors'
 import styles, { navigatorStyle } from './styles'
 
 type Props = {
-  news: Array<Object>,
-  newsFetch: Function,
-  newsGreetings: Function,
-  greetings?: string,
-  updated?: string,
+  itemsFetch: Function,
+  items: Array<Object>,
+
+  greetings: Function,
+  greeting?: string,
+
+  updatedDate: Function,
+  date?: Date,
 }
 
 type State = {
@@ -34,7 +37,7 @@ class NewsScreen extends React.Component<Props, State> {
   static navigatorStyle = navigatorStyle
 
   static defaultProps = {
-    news: [],
+    items: [],
   }
 
   state = {
@@ -45,6 +48,7 @@ class NewsScreen extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
+    this.props.greetings()
     this.refreshData()
   }
 
@@ -59,8 +63,8 @@ class NewsScreen extends React.Component<Props, State> {
 
   refreshData = () => {
     this.props
-      .newsFetch()
-      .then(() => this.props.newsGreetings())
+      .itemsFetch()
+      .then(() => this.props.updatedDate(new Date()))
       .then(() => this.setState({ isRefreshing: false, hasContent: true }))
 
     setInterval(() => {
@@ -77,7 +81,7 @@ class NewsScreen extends React.Component<Props, State> {
         },
       })
 
-      this.setState({ lastRefreshedDate: moment(this.props.updated).fromNow() })
+      this.setState({ lastRefreshedDate: moment(this.props.date).fromNow() })
     }, 1000)
   }
 
@@ -87,7 +91,7 @@ class NewsScreen extends React.Component<Props, State> {
         data: [
           {
             key: 'jumbo',
-            title: this.props.greetings,
+            title: this.props.greeting,
             description: this.state.lastRefreshedDate
               ? `Updated ${this.state.lastRefreshedDate}`
               : null,
@@ -96,7 +100,7 @@ class NewsScreen extends React.Component<Props, State> {
         renderItem: this.renderJumboCell,
       },
       {
-        data: this.props.news,
+        data: this.props.items,
         renderItem: this.renderNewsCell,
       },
     ]
@@ -160,7 +164,6 @@ class NewsScreen extends React.Component<Props, State> {
   )
 
   render() {
-    console.log(this.props.greetings)
     return (
       <View style={styles.container}>
         {!this.state.hasShownIntro && this.renderIntro()}
@@ -174,14 +177,15 @@ class NewsScreen extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  news: selectors.sortedNewsItems(state),
-  updated: state.news.date,
-  greetings: selectors.selectRandomGreetings(state),
+  items: selectors.sortedNewsItems(state),
+  greeting: selectors.selectRandomGreetings(state),
+  date: selectors.newsUpdatedDate(state),
 })
 
 const mapDispatchToProps = {
-  newsFetch: newsActions.newsFetch,
-  newsGreetings: newsActions.newsGreetings,
+  itemsFetch: newsActions.itemsFetch,
+  updatedDate: newsActions.updatedDate,
+  greetings: newsActions.greetings,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen)
