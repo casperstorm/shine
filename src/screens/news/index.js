@@ -22,7 +22,7 @@ type Props = {
   greetings: Function,
   greeting?: string,
 
-  updatedDate: Function,
+  refreshDate: Function,
   date?: Date,
 }
 
@@ -64,7 +64,7 @@ class NewsScreen extends React.Component<Props, State> {
   refreshData = () => {
     this.props
       .itemsFetch()
-      .then(() => this.props.updatedDate(new Date()))
+      .then(() => this.props.refreshDate(new Date()))
       .then(() => this.setState({ isRefreshing: false, hasContent: true }))
 
     setInterval(() => {
@@ -184,7 +184,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   itemsFetch: newsActions.itemsFetch,
-  updatedDate: newsActions.updatedDate,
+  refreshDate: newsActions.refreshDate,
   greetings: newsActions.greetings,
 }
 

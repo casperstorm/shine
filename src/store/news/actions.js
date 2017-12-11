@@ -34,7 +34,7 @@ export const itemsFetch = (): ThunkAction => (dispatch, getState) =>
       dispatch({ type: actionTypes.NEWS_FETCH, value: json.results })
     })
 
-export const updatedDate = (date: Date): ActionNewsDate => ({
+export const refreshDate = (date: Date): ActionNewsDate => ({
   type: actionTypes.NEWS_DATE,
   value: date,
 })
