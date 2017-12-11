@@ -1,22 +1,39 @@
-import * as Types from './types'
+/* @flow */
+import { actionTypes } from './actions'
+import type { Action } from '../types'
 
 export const initialState = {
-  data: [],
-  updated: null,
+  items: [],
+  date: null,
+  greetings: [],
 }
 
-const news = (state = initialState, action) => {
+export type State = {
+  items: Array<Object>,
+  date: ?Date,
+  greetings: Array<String>,
+}
+
+const news = (state: State = initialState, action: Action) => {
   switch (action.type) {
-    case Types.NEWS_LOAD:
+    case actionTypes.NEWS_FETCH:
       return {
         ...state,
-        data: action.data,
+        items: action.value,
       }
-    case Types.NEWS_UPDATED:
+
+    case actionTypes.NEWS_DATE:
       return {
         ...state,
-        updated: action.data,
+        date: action.value,
       }
+
+    case actionTypes.NEWS_GREETINGS:
+      return {
+        ...state,
+        greetings: action.value,
+      }
+
     default:
       return state
   }

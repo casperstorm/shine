@@ -1,4 +1,12 @@
+/* @flow */
 import news from './news/reducer'
-import shared from './shared/reducer'
 
-export { news, shared }
+import type { State as StateNews } from './news/reducer'
+
+export default {
+  news,
+}
+
+export type State = {|
+  news: StateNews,
+|}

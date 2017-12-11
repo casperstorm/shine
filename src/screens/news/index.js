@@ -11,16 +11,19 @@ import Asset from '../../components/asset'
 import FadeView from '../../components/fade-view'
 
 import * as newsActions from '../../store/news/actions'
-import * as sharedActions from '../../store/shared/actions'
+import * as selectors from '../../store/selectors'
 
 import styles, { navigatorStyle } from './styles'
 
 type Props = {
-  news: Array<any>,
-  newsLoad: Function,
-  welcomeLoad: Function,
-  welcome?: string,
-  updated?: string,
+  itemsFetch: Function,
+  items: Array<Object>,
+
+  greetings: Function,
+  greeting?: string,
+
+  refreshDate: Function,
+  date?: Date,
 }
 
 type State = {
@@ -34,7 +37,7 @@ class NewsScreen extends React.Component<Props, State> {
   static navigatorStyle = navigatorStyle
 
   static defaultProps = {
-    news: [],
+    items: [],
   }
 
   state = {
@@ -45,6 +48,7 @@ class NewsScreen extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
+    this.props.greetings()
     this.refreshData()
   }
 
@@ -59,8 +63,8 @@ class NewsScreen extends React.Component<Props, State> {
 
   refreshData = () => {
     this.props
-      .newsLoad()
-      .then(() => this.props.welcomeLoad())
+      .itemsFetch()
+      .then(() => this.props.refreshDate(new Date()))
       .then(() => this.setState({ isRefreshing: false, hasContent: true }))
 
     setInterval(() => {
@@ -77,7 +81,7 @@ class NewsScreen extends React.Component<Props, State> {
         },
       })
 
-      this.setState({ lastRefreshedDate: moment(this.props.updated).fromNow() })
+      this.setState({ lastRefreshedDate: moment(this.props.date).fromNow() })
     }, 1000)
   }
 
@@ -87,7 +91,7 @@ class NewsScreen extends React.Component<Props, State> {
         data: [
           {
             key: 'jumbo',
-            title: this.props.welcome,
+            title: this.props.greeting,
             description: this.state.lastRefreshedDate
               ? `Updated ${this.state.lastRefreshedDate}`
               : null,
@@ -96,7 +100,7 @@ class NewsScreen extends React.Component<Props, State> {
         renderItem: this.renderJumboCell,
       },
       {
-        data: this.props.news,
+        data: this.props.items,
         renderItem: this.renderNewsCell,
       },
     ]
@@ -173,14 +177,15 @@ class NewsScreen extends React.Component<Props, State> {
 }
 
 const mapStateToProps = state => ({
-  news: state.news.data,
-  updated: state.news.updated,
-  welcome: state.shared.welcome,
+  items: selectors.sortedNewsItems(state),
+  greeting: selectors.selectRandomGreetings(state),
+  date: selectors.newsUpdatedDate(state),
 })
 
 const mapDispatchToProps = {
-  newsLoad: newsActions.load,
-  welcomeLoad: sharedActions.welcome,
+  itemsFetch: newsActions.itemsFetch,
+  refreshDate: newsActions.refreshDate,
+  greetings: newsActions.greetings,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen)

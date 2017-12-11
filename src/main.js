@@ -1,18 +1,12 @@
 import { Navigation } from 'react-native-navigation'
-import { applyMiddleware, combineReducers, createStore } from 'redux'
 import { Provider } from 'react-redux'
-import thunk from 'redux-thunk'
 
 import NewsScreen from './screens/news'
-
-import * as reducers from './store/reducers'
+import configureStore from './store/configure-store'
 
 class Main {
   constructor() {
-    const middleware = applyMiddleware(thunk)
-    const reducer = combineReducers(reducers)
-    const store = createStore(reducer, middleware)
-
+    const store = configureStore(() => {})
     this.registerScreens(store, Provider)
   }
 
