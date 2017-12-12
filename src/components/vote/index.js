@@ -7,8 +7,8 @@ import Asset from '../../components/asset'
 import styles from './styles'
 
 export type Props = {
-  title?: string,
-  type?: string,
+  title: string,
+  type: 'positive' | 'negative' | 'important',
 }
 
 class Vote extends React.Component<Props> {

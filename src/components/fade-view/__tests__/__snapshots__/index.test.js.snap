@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`fade-view should render correctly 1`] = `
+<View
+  collapsable={undefined}
+  style={
+    Object {
+      "opacity": 0,
+    }
+  }
+/>
+`;

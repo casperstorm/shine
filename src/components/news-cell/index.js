@@ -18,7 +18,7 @@ export type Props = {
 }
 
 class NewsCell extends React.Component<Props> {
-  tags = (currencies: Array<any> | void) => {
+  tags = (currencies: Array<Object> | void) => {
     if (currencies === undefined) return null
     return _.uniqBy(currencies, 'code').map(currency => (
       <Tag key={currency.code} title={currency.code} />
