@@ -5,7 +5,7 @@ import stc from 'string-to-color'
 
 import styles from './styles'
 
-export type Props = { title?: string }
+export type Props = { title: string }
 
 class Tag extends React.Component<Props> {
   props: Props
