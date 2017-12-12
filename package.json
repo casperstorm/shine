@@ -53,10 +53,12 @@
 		"flow-bin": "0.53.0",
 		"husky": "^0.14.3",
 		"jest": "21.2.1",
+		"jest-fetch-mock": "^1.4.0",
 		"lint-staged": "^5.0.0",
 		"prettier": "^1.8.2",
 		"react-dom": "16.0.0-beta.5",
-		"react-test-renderer": "16.0.0-beta.5"
+		"react-test-renderer": "16.0.0-beta.5",
+		"redux-mock-store": "^1.3.0"
 	},
 	"lint-staged": {
 		"src/**/*.js": [
@@ -66,8 +68,10 @@
 	},
 	"jest": {
 		"preset": "react-native",
+		"automock": false,
 		"setupFiles": [
-			"./src/test/setup-jest.js"
+			"./src/test/setup-jest.js",
+			"./src/test/global-mock-fetch.js"
 		],
 		"timers": "fake",
 		"collectCoverageFrom": [
