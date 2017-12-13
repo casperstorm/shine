@@ -33,12 +33,31 @@ type State = {
   lastRefreshedDate: ?string,
 }
 
+const relativeTimes = {
+  short: {
+    past: '%s',
+    s: '< 1 m',
+    m: '1 m',
+    mm: '%d m',
+    h: '1 h',
+    hh: '%d h',
+    d: '1 d',
+    dd: '%d d',
+  },
+  medium: {
+    past: '%s ago',
+    s: 'a few seconds',
+    m: 'a minute',
+    mm: '%d minutes',
+    h: 'an hour',
+    hh: '%d hours',
+    d: 'a day',
+    dd: 'only %d days',
+  },
+}
+
 class NewsScreen extends React.Component<Props, State> {
   static navigatorStyle = navigatorStyle
-
-  static defaultProps = {
-    items: [],
-  }
 
   state = {
     hasContent: false,
@@ -69,16 +88,7 @@ class NewsScreen extends React.Component<Props, State> {
 
     setInterval(() => {
       moment.updateLocale('en', {
-        relativeTime: {
-          past: '%s ago',
-          s: 'a few seconds',
-          m: 'a minute',
-          mm: '%d minutes',
-          h: 'an hour',
-          hh: '%d hours',
-          d: 'a day',
-          dd: 'only %d days',
-        },
+        relativeTime: relativeTimes.medium,
       })
 
       this.setState({ lastRefreshedDate: moment(this.props.date).fromNow() })
@@ -115,12 +125,16 @@ class NewsScreen extends React.Component<Props, State> {
   }
 
   renderNewsCell = ({ item }) => {
+    moment.updateLocale('en', {
+      relativeTime: relativeTimes.short,
+    })
+
     return (
       <NewsCell
         title={item.title}
         currencies={item.currencies}
         votes={item.votes}
-        published={item.published_at}
+        published={moment(item.published_at).fromNow(true)}
         onPress={() => {
           Linking.openURL(item.url)
         }}
