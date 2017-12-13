@@ -16,14 +16,14 @@ storiesOf('news-cell', module).add('default', () => (
         { code: 'GRS', title: 'GRS' },
       ]}
       votes={{ important: 1, negative: 2, positive: 3 }}
-      published={new Date()}
+      published={'2m'}
       onPress={action('onPress')}
     />
     <NewsCell
       title={'Phasellus dolor nunc, faucibus eget accumsan ac, mollis sit amet lorem.'}
       currencies={[]}
       votes={{ important: 0, negative: 0, positive: 0 }}
-      published={new Date()}
+      published={'2m'}
       onPress={action('onPress')}
     />
     <NewsCell
@@ -32,7 +32,7 @@ storiesOf('news-cell', module).add('default', () => (
       }
       currencies={[]}
       votes={{ important: 1, negative: 2, positive: 0 }}
-      published={new Date()}
+      published={'2m'}
       onPress={action('onPress')}
     />
   </ColorWrapper>
