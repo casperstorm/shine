@@ -26,11 +26,11 @@ class NewsCell extends React.Component<Props> {
       )
     if (votes.positive > 0)
       tags.push(
-        <Vote key={'positive'} type={'positive'} title={votes.important.toString()} />
+        <Vote key={'positive'} type={'positive'} title={votes.positive.toString()} />
       )
     if (votes.negative > 0)
       tags.push(
-        <Vote key={'negative'} type={'negative'} title={votes.important.toString()} />
+        <Vote key={'negative'} type={'negative'} title={votes.negative.toString()} />
       )
 
     _.uniqBy(currencies, 'code').map(currency =>
