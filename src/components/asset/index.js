@@ -64,6 +64,7 @@ Icon.LogoDark = () => <Icon source={require('../../../assets/images/icLogoDark.p
 Icon.Shadow = () => <Icon source={require('../../../assets/images/bottom_gradient.png')} style={ styles.shadow } />
 Icon.Negative = () => <Icon source={require('../../../assets/images/icSkull.png')} />
 Icon.Positive = () => <Icon source={require('../../../assets/images/icHeart.png')} />
+Icon.Important = () => <Icon source={require('../../../assets/images/icImportant.png')} />
 /* eslint-enable prettier/prettier */
 
 Button.LogoDark = props => <Button {...props} icon={<Icon.LogoDark />} />
