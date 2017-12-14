@@ -7,6 +7,8 @@ import com.lugg.ReactNativeConfig.ReactNativeConfigPackage;
 import java.util.Arrays;
 import java.util.List;
 
+import dk.madslee.imageSequence.RCTImageSequencePackage;
+
 public class MainApplication extends NavigationApplication {
 
   @Override
@@ -19,7 +21,8 @@ public class MainApplication extends NavigationApplication {
     // Add additional packages you require here
     // No need to add RnnPackage and MainReactPackage
     return Arrays.<ReactPackage>asList(
-      new ReactNativeConfigPackage()
+      new ReactNativeConfigPackage(),
+      new RCTImageSequencePackage()
     );
   }
 
