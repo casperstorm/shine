@@ -29,9 +29,9 @@ storiesOf('news-cell', module).add('no-currencies', () => (
       title={'Phasellus dolor nunc, faucibus eget accumsan ac, mollis sit amet lorem.'}
       currencies={[]}
       votes={{
-        negative: 0,
+        negative: 10,
         positive: 1,
-        important: 0,
+        important: 5,
       }}
       published={'2m'}
       onPress={action('onPress')}
