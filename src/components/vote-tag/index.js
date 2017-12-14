@@ -12,7 +12,6 @@ export type Props = {
 }
 
 class VoteTag extends React.Component<Props> {
-  props: Props
   render() {
     return (
       <View style={styles.container}>
@@ -28,7 +27,7 @@ class VoteTag extends React.Component<Props> {
         )}
         {this.props.type === 'important' && (
           <View style={styles.icon}>
-            <Asset.Icon.Negative />
+            <Asset.Icon.Important />
           </View>
         )}
         <Text style={styles.title}>{this.props.title}</Text>

@@ -28,7 +28,11 @@ storiesOf('news-cell', module).add('no-currencies', () => (
     <NewsCell
       title={'Phasellus dolor nunc, faucibus eget accumsan ac, mollis sit amet lorem.'}
       currencies={[]}
-      votes={{ important: 1, negative: 1, positive: 1 }}
+      votes={{
+        negative: 0,
+        positive: 1,
+        important: 0,
+      }}
       published={'2m'}
       onPress={action('onPress')}
     />
