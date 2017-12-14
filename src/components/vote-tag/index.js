@@ -11,7 +11,7 @@ export type Props = {
   type: 'positive' | 'negative' | 'important',
 }
 
-class Vote extends React.Component<Props> {
+class VoteTag extends React.Component<Props> {
   props: Props
   render() {
     return (
@@ -37,4 +37,4 @@ class Vote extends React.Component<Props> {
   }
 }
 
-export default Vote
+export default VoteTag

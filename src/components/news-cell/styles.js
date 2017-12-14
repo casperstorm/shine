@@ -23,6 +23,7 @@ export default StyleSheet.create({
   information: {
     flexDirection: 'row',
     justifyContent: 'space-between',
+    height: 35,
   },
 
   date: {

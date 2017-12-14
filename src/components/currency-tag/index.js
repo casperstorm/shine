@@ -7,7 +7,7 @@ import styles from './styles'
 
 export type Props = { title: string }
 
-class Tag extends React.Component<Props> {
+class CurrencyTag extends React.Component<Props> {
   props: Props
   render() {
     const generatedStyle = {
@@ -23,4 +23,4 @@ class Tag extends React.Component<Props> {
   }
 }
 
-export default Tag
+export default CurrencyTag
