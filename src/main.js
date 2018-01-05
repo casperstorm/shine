@@ -4,6 +4,8 @@ import { Provider } from 'react-redux'
 import NewsScreen from './screens/news'
 import configureStore from './store/configure-store'
 
+import './reactotron-config'
+
 class Main {
   constructor() {
     const store = configureStore(() => {})

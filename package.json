@@ -7,6 +7,7 @@
 		"android": "ENVFILE=src/config/.env.production react-native run-android",
 		"start": "react-native start",
 		"clean": "rm -rf android/build ios/build android/app/build *.log",
+		"postinstall": "remotedev-debugger --hostname localhost --port 5678 --injectserver=reactnative",
 		"precommit": "lint-staged",
 		"flow": "flow --show-all-errors --quiet",
 		"lint": "eslint --fix .",
@@ -28,6 +29,8 @@
 		"react-native-image-sequence": "^0.5.0",
 		"react-native-navigation": "^1.1.250",
 		"react-redux": "^5.0.6",
+		"reactotron-react-native": "^1.14.0",
+		"reactotron-redux": "^1.13.0",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0",
 		"reselect": "^3.0.1",
@@ -57,8 +60,10 @@
 		"lint-staged": "^5.0.0",
 		"prettier": "^1.8.2",
 		"react-dom": "16.0.0-beta.5",
-		"react-test-renderer": "16.0.0-beta.5",
-		"redux-mock-store": "^1.3.0"
+		"react-test-renderer": "16.0.0",
+		"redux-mock-store": "^1.3.0",
+		"remote-redux-devtools": "^0.5.12",
+		"remotedev-rn-debugger": "^0.8.3"
 	},
 	"lint-staged": {
 		"src/**/*.js": [

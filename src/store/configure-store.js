@@ -1,15 +1,24 @@
 /* @flow */
-import { combineReducers, applyMiddleware, createStore } from 'redux'
+import { Platform } from 'react-native'
+import { combineReducers, applyMiddleware, compose } from 'redux'
+import { composeWithDevTools } from 'remote-redux-devtools' //eslint-disable-line
+import Reactotron from 'reactotron-react-native'
 import thunk from 'redux-thunk'
 import reducers from './reducers'
 import type { State } from './types'
 
 export default function configureStore(onStoreReady: () => void, initialState?: State) {
-  console.log(initialState)
-
-  const middleware = applyMiddleware(thunk)
+  const middleware = [thunk]
+  const devToolsComposeEnhancers = composeWithDevTools({
+    realtime: true,
+    name: Platform.OS,
+    hostname: 'localhost',
+    port: 5678,
+  })
+  const enhancerBase = compose(applyMiddleware(...middleware))
+  const enhancer = __DEV__ ? devToolsComposeEnhancers(enhancerBase) : enhancerBase
   const reducer = combineReducers(reducers)
-  const store = createStore(reducer, initialState, middleware)
+  const store = Reactotron.createStore(reducer, initialState, enhancer)
 
   return store
 }
