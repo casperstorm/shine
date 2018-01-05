@@ -29,6 +29,8 @@
 		"react-native-image-sequence": "^0.5.0",
 		"react-native-navigation": "^1.1.250",
 		"react-redux": "^5.0.6",
+		"reactotron-react-native": "^1.14.0",
+		"reactotron-redux": "^1.13.0",
 		"redux": "^3.7.2",
 		"redux-thunk": "^2.2.0",
 		"reselect": "^3.0.1",
