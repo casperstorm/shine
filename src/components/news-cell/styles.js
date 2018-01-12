@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-import theme from '../../theme'
-
 export default StyleSheet.create({
   container: {
     margin: 12,
@@ -9,9 +7,14 @@ export default StyleSheet.create({
   },
 
   title: {
-    ...theme.text.listBody,
     margin: 12,
     marginBottom: 16,
+  },
+
+  subtitle: {
+    marginRight: 12,
+    marginLeft: 12,
+    marginBottom: 12,
   },
 
   tags: {
@@ -26,18 +29,9 @@ export default StyleSheet.create({
     height: 35,
   },
 
-  date: {
-    ...theme.text.contentDescription,
-    marginRight: 12,
-    marginLeft: 12,
-    marginBottom: 12,
-  },
-
   separator: {
     position: 'absolute',
     borderTopWidth: 0.5,
-    borderTopColor: theme.color.base1,
-    opacity: 0.8,
     left: 12,
     right: 12,
     bottom: 0,

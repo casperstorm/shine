@@ -4,29 +4,31 @@ import { connect } from 'react-redux'
 import { View, SectionList, Linking, ActivityIndicator } from 'react-native'
 import moment from 'moment'
 
+import type { Dispatch, State, Theme } from '../../store/types'
 import JumboCell from '../../components/jumbo-cell'
 import NewsCell from '../../components/news-cell'
 import Intro from '../../components/intro'
 import Asset from '../../components/asset'
 import FadeView from '../../components/fade-view'
 
-import * as newsActions from '../../store/news/actions'
 import * as selectors from '../../store/selectors'
+import { itemsFetch, refreshDate, greetings } from '../../store/news/actions'
 
 import styles, { navigatorStyle } from './styles'
+import themes from './styles.themes'
 
 type Props = {
-  itemsFetch: Function,
+  navigator: Object,
+
+  // Redux
+  dispatch: Dispatch,
   items: Array<Object>,
-
-  greetings: Function,
   greeting?: string,
-
-  refreshDate: Function,
   date?: Date,
+  theme: Theme,
 }
 
-type State = {
+type ComponentState = {
   hasContent: boolean,
   hasShownIntro: boolean,
   isRefreshing: boolean,
@@ -56,7 +58,7 @@ const relativeTimes = {
   },
 }
 
-class NewsScreen extends React.Component<Props, State> {
+class NewsScreen extends React.Component<Props, ComponentState> {
   static navigatorStyle = navigatorStyle
 
   state = {
@@ -67,8 +69,19 @@ class NewsScreen extends React.Component<Props, State> {
   }
 
   componentDidMount = () => {
-    this.props.greetings()
+    this.props.dispatch(greetings())
     this.refreshData()
+  }
+
+  themeStyle = (name: 'container' | 'shadow') => {
+    switch (this.props.theme) {
+      case 'black':
+        return themes.black[name]
+      case 'white':
+        return themes.white[name]
+      case 'pink':
+        return themes.pink[name]
+    }
   }
 
   onIntroEnd = () => {
@@ -82,8 +95,8 @@ class NewsScreen extends React.Component<Props, State> {
 
   refreshData = () => {
     this.props
-      .itemsFetch()
-      .then(() => this.props.refreshDate(new Date()))
+      .dispatch(itemsFetch())
+      .then(() => this.props.dispatch(refreshDate(new Date())))
       .then(() => this.setState({ isRefreshing: false, hasContent: true }))
 
     setInterval(() => {
@@ -121,7 +134,19 @@ class NewsScreen extends React.Component<Props, State> {
   }
 
   renderJumboCell = ({ item }) => {
-    return <JumboCell title={item.title} description={item.description} />
+    return (
+      <JumboCell
+        theme={this.props.theme}
+        title={item.title}
+        subtitle={item.description}
+        onLogoPress={() => {
+          this.props.navigator.showModal({
+            screen: 'Shine.Settings',
+            animated: true,
+          })
+        }}
+      />
+    )
   }
 
   renderNewsCell = ({ item }) => {
@@ -131,6 +156,7 @@ class NewsScreen extends React.Component<Props, State> {
 
     return (
       <NewsCell
+        theme={this.props.theme}
         title={item.title}
         currencies={item.currencies}
         votes={item.votes}
@@ -165,7 +191,7 @@ class NewsScreen extends React.Component<Props, State> {
   renderContent = () => (
     <FadeView duration={450} style={styles.content}>
       <View pointerEvents="none" style={styles.shadowContainer}>
-        <Asset.Icon.Shadow />
+        <Asset.Icon.Shadow style={this.themeStyle('shadow')} />
       </View>
       <SectionList
         renderItem={() => null}
@@ -179,7 +205,7 @@ class NewsScreen extends React.Component<Props, State> {
 
   render() {
     return (
-      <View style={styles.container}>
+      <View style={[styles.container, this.themeStyle('container')]}>
         {!this.state.hasShownIntro && this.renderIntro()}
         {this.state.hasShownIntro &&
           !this.state.hasContent &&
@@ -190,16 +216,11 @@ class NewsScreen extends React.Component<Props, State> {
   }
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: State) => ({
   items: selectors.sortedNewsItems(state),
   greeting: selectors.selectRandomGreetings(state),
   date: selectors.newsUpdatedDate(state),
+  theme: selectors.currentTheme(state),
 })
 
-const mapDispatchToProps = {
-  itemsFetch: newsActions.itemsFetch,
-  refreshDate: newsActions.refreshDate,
-  greetings: newsActions.greetings,
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NewsScreen)
+export default connect(mapStateToProps)(NewsScreen)

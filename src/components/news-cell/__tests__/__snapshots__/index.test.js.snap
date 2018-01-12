@@ -42,14 +42,13 @@ exports[`news-cell should render correctly with all props 1`] = `
       disabled={false}
       ellipsizeMode="tail"
       style={
-        Object {
-          "color": "#FFFFFF",
-          "fontFamily": "Rubik-Regular",
-          "fontSize": 17,
-          "lineHeight": 22,
-          "margin": 12,
-          "marginBottom": 16,
-        }
+        Array [
+          Object {
+            "margin": 12,
+            "marginBottom": 16,
+          },
+          undefined,
+        ]
       }
     >
       foo
@@ -78,7 +77,6 @@ exports[`news-cell should render correctly with all props 1`] = `
               Object {
                 "alignItems": "center",
                 "borderRadius": 10,
-                "borderWidth": 1,
                 "height": 23,
                 "justifyContent": "center",
                 "marginRight": 7,
@@ -96,7 +94,7 @@ exports[`news-cell should render correctly with all props 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#FFFFFF",
+                "color": "rgba(255, 255, 255, 1)",
                 "fontFamily": "Rubik-Bold",
                 "fontSize": 12,
                 "marginLeft": 8,
@@ -113,7 +111,6 @@ exports[`news-cell should render correctly with all props 1`] = `
               Object {
                 "alignItems": "center",
                 "borderRadius": 10,
-                "borderWidth": 1,
                 "height": 23,
                 "justifyContent": "center",
                 "marginRight": 7,
@@ -131,7 +128,7 @@ exports[`news-cell should render correctly with all props 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#FFFFFF",
+                "color": "rgba(255, 255, 255, 1)",
                 "fontFamily": "Rubik-Bold",
                 "fontSize": 12,
                 "marginLeft": 8,
@@ -144,16 +141,17 @@ exports[`news-cell should render correctly with all props 1`] = `
         </View>
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#252525",
-              "borderRadius": 10,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 23,
-              "justifyContent": "center",
-              "marginRight": 7,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 10,
+                "flexDirection": "row",
+                "height": 23,
+                "justifyContent": "center",
+                "marginRight": 7,
+              },
+              undefined,
+            ]
           }
         >
           <View
@@ -175,7 +173,7 @@ exports[`news-cell should render correctly with all props 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#FFFFFF",
+                "color": "#ffffff",
                 "fontFamily": "Rubik-Regular",
                 "fontSize": 12,
                 "marginLeft": 8,
@@ -188,16 +186,17 @@ exports[`news-cell should render correctly with all props 1`] = `
         </View>
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#252525",
-              "borderRadius": 10,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 23,
-              "justifyContent": "center",
-              "marginRight": 7,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 10,
+                "flexDirection": "row",
+                "height": 23,
+                "justifyContent": "center",
+                "marginRight": 7,
+              },
+              undefined,
+            ]
           }
         >
           <View
@@ -219,7 +218,7 @@ exports[`news-cell should render correctly with all props 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#FFFFFF",
+                "color": "#ffffff",
                 "fontFamily": "Rubik-Regular",
                 "fontSize": 12,
                 "marginLeft": 8,
@@ -232,16 +231,17 @@ exports[`news-cell should render correctly with all props 1`] = `
         </View>
         <View
           style={
-            Object {
-              "alignItems": "center",
-              "backgroundColor": "#252525",
-              "borderRadius": 10,
-              "borderWidth": 1,
-              "flexDirection": "row",
-              "height": 23,
-              "justifyContent": "center",
-              "marginRight": 7,
-            }
+            Array [
+              Object {
+                "alignItems": "center",
+                "borderRadius": 10,
+                "flexDirection": "row",
+                "height": 23,
+                "justifyContent": "center",
+                "marginRight": 7,
+              },
+              undefined,
+            ]
           }
         >
           <View
@@ -263,7 +263,7 @@ exports[`news-cell should render correctly with all props 1`] = `
             ellipsizeMode="tail"
             style={
               Object {
-                "color": "#FFFFFF",
+                "color": "#ffffff",
                 "fontFamily": "Rubik-Regular",
                 "fontSize": 12,
                 "marginLeft": 8,
@@ -281,15 +281,14 @@ exports[`news-cell should render correctly with all props 1`] = `
         disabled={false}
         ellipsizeMode="tail"
         style={
-          Object {
-            "color": "#FFFFFF",
-            "fontFamily": "Rubik-Light",
-            "fontSize": 15,
-            "marginBottom": 12,
-            "marginLeft": 12,
-            "marginRight": 12,
-            "opacity": 0.7,
-          }
+          Array [
+            Object {
+              "marginBottom": 12,
+              "marginLeft": 12,
+              "marginRight": 12,
+            },
+            undefined,
+          ]
         }
       >
         2m
@@ -297,15 +296,16 @@ exports[`news-cell should render correctly with all props 1`] = `
     </View>
     <View
       style={
-        Object {
-          "borderTopColor": "#444444",
-          "borderTopWidth": 0.5,
-          "bottom": 0,
-          "left": 12,
-          "opacity": 0.8,
-          "position": "absolute",
-          "right": 12,
-        }
+        Array [
+          Object {
+            "borderTopWidth": 0.5,
+            "bottom": 0,
+            "left": 12,
+            "position": "absolute",
+            "right": 12,
+          },
+          undefined,
+        ]
       }
     />
   </View>

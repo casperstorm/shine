@@ -3,16 +3,17 @@
 exports[`vote should render correctly 1`] = `
 <View
   style={
-    Object {
-      "alignItems": "center",
-      "backgroundColor": "#252525",
-      "borderRadius": 10,
-      "borderWidth": 1,
-      "flexDirection": "row",
-      "height": 23,
-      "justifyContent": "center",
-      "marginRight": 7,
-    }
+    Array [
+      Object {
+        "alignItems": "center",
+        "borderRadius": 10,
+        "flexDirection": "row",
+        "height": 23,
+        "justifyContent": "center",
+        "marginRight": 7,
+      },
+      undefined,
+    ]
   }
 >
   <View
@@ -34,7 +35,7 @@ exports[`vote should render correctly 1`] = `
     ellipsizeMode="tail"
     style={
       Object {
-        "color": "#FFFFFF",
+        "color": "#ffffff",
         "fontFamily": "Rubik-Regular",
         "fontSize": 12,
         "marginLeft": 8,

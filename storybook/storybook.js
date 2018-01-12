@@ -8,6 +8,7 @@ configure(() => {
   require('./stories/components/news-cell.stories')
   require('./stories/components/jumbo-cell.stories')
   require('./stories/components/intro-view.stories')
+  require('./stories/screens/settings.stories')
 }, module)
 
 // This assumes that storybook is running on the same host as your RN packager,
