@@ -1,10 +1,17 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, SectionList, Linking, ActivityIndicator } from 'react-native'
+import {
+  View,
+  SectionList,
+  Linking,
+  ActivityIndicator,
+  RefreshControl,
+} from 'react-native'
 import moment from 'moment'
 
-import type { Dispatch, State, Theme } from '../../store/types'
+import type { Theme } from '../../types'
+import type { Dispatch, State } from '../../store/types'
 import JumboCell from '../../components/jumbo-cell'
 import NewsCell from '../../components/news-cell'
 import Intro from '../../components/intro'
@@ -15,6 +22,7 @@ import * as selectors from '../../store/selectors'
 import { itemsFetch, refreshDate, greetings } from '../../store/news/actions'
 
 import styles, { navigatorStyle } from './styles'
+import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
 
 type Props = {
@@ -68,19 +76,18 @@ class NewsScreen extends React.Component<Props, ComponentState> {
     lastRefreshedDate: null,
   }
 
+  themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
+
   componentDidMount = () => {
     this.props.dispatch(greetings())
     this.refreshData()
   }
 
-  themeStyle = (name: 'container' | 'shadow') => {
-    switch (this.props.theme) {
-      case 'black':
-        return themes.black[name]
-      case 'white':
-        return themes.white[name]
-      case 'pink':
-        return themes.pink[name]
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.theme) {
+      this.props.navigator.setStyle({
+        ...themes.statusBar(nextProps.theme),
+      })
     }
   }
 
@@ -196,7 +203,13 @@ class NewsScreen extends React.Component<Props, ComponentState> {
       <SectionList
         renderItem={() => null}
         refreshing={this.state.isRefreshing}
-        onRefresh={() => this.onRefresh()}
+        refreshControl={
+          <RefreshControl
+            refreshing={this.state.isRefreshing}
+            onRefresh={() => this.onRefresh()}
+            tintColor={themes.refreshControl(this.props.theme)}
+          />
+        }
         sections={this.sections()}
         keyExtractor={this.keyExtractor}
       />

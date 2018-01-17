@@ -2,10 +2,11 @@
 import React from 'react'
 import { Text, View } from 'react-native'
 
-import type { Theme } from '../../store/types'
+import type { Theme } from '../../types'
 import Asset from '../../components/asset'
 
 import styles from './styles'
+import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
 
 export type Props = {
@@ -15,36 +16,27 @@ export type Props = {
 }
 
 class VoteTag extends React.Component<Props> {
-  themeStyle = (name: 'vote') => {
-    switch (this.props.theme) {
-      case 'black':
-        return themes.black[name]
-      case 'white':
-        return themes.white[name]
-      case 'pink':
-        return themes.pink[name]
-    }
-  }
+  themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
 
   render() {
     return (
-      <View style={[styles.container, this.themeStyle('vote')]}>
+      <View style={[styles.container, this.themeStyle('container')]}>
         {this.props.type === 'positive' && (
           <View style={styles.icon}>
-            <Asset.Icon.Positive />
+            <Asset.Icon.Positive style={this.themeStyle('icon')} />
           </View>
         )}
         {this.props.type === 'negative' && (
           <View style={styles.icon}>
-            <Asset.Icon.Negative />
+            <Asset.Icon.Negative style={this.themeStyle('icon')} />
           </View>
         )}
         {this.props.type === 'important' && (
           <View style={styles.icon}>
-            <Asset.Icon.Important />
+            <Asset.Icon.Important style={this.themeStyle('icon')} />
           </View>
         )}
-        <Text style={styles.title}>{this.props.title}</Text>
+        <Text style={[styles.title, this.themeStyle('title')]}>{this.props.title}</Text>
       </View>
     )
   }

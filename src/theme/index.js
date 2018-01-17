@@ -1,7 +1,4 @@
 /* @flow */
-import type { Theme } from '../store/types'
-export function configureStore(theme: Theme) {}
-
 const color = {
   white: 'rgba(255, 255, 255, 1)',
   black: 'rgba(0, 0, 0, 1)',
@@ -22,15 +19,7 @@ const text = {
   },
 }
 
-const navigatorStyle = {
-  common: {
-    statusBarTextColorSchemeSingleScreen: 'light',
-    navBarHidden: true,
-  },
-}
-
 export default {
   color,
   text,
-  navigatorStyle,
 }

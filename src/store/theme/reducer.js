@@ -1,6 +1,7 @@
 /* @flow */
 import { actionTypes } from './actions'
-import type { Action, Theme } from '../types'
+import type { Action } from '../types'
+import type { Theme } from '../../types'
 
 export type State = {
   current: Theme,

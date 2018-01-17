@@ -1,5 +1,5 @@
 /* @flow */
-import type { Theme } from '../types'
+import type { Theme } from '../../types'
 
 export const actionTypes = {
   THEME_CHANGE: 'THEME_CHANGE',

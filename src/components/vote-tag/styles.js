@@ -17,7 +17,6 @@ export default StyleSheet.create({
 
   title: {
     fontSize: 12,
-    color: '#ffffff',
     fontFamily: 'Rubik-Regular',
     marginLeft: 8,
     marginRight: 8,

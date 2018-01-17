@@ -7,11 +7,16 @@ export default StyleSheet.create({
   },
 
   title: {
+    fontFamily: 'Rubik-Regular',
+    fontSize: 17,
+    lineHeight: 22.0,
     margin: 12,
     marginBottom: 16,
   },
 
   subtitle: {
+    fontFamily: 'Rubik-Light',
+    fontSize: 13,
     marginRight: 12,
     marginLeft: 12,
     marginBottom: 12,

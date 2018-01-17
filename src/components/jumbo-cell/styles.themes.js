@@ -1,92 +1,61 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
+import type { Theme } from '../../types'
 
 const colors = {
   white: '#FFFFFF',
   black: '#000000',
-
   pinkSeparator: '#E2216C',
-
   blackLogo: '#757675',
   pinkLogo: '#E2216C',
   whiteLogo: '#D4D5D4',
 }
 
-const fonts = {
-  title: 'Rubik-Bold',
-  light: 'Rubik-Light',
-}
-
 const black = StyleSheet.create({
-  title: {
-    fontFamily: fonts.title,
-    fontSize: 30,
-    color: colors.white,
-  },
-
-  subtitle: {
-    fontFamily: fonts.light,
-    fontSize: 15,
-    color: colors.white,
-  },
-
+  title: { color: colors.white },
+  subtitle: { color: colors.white },
   separator: {
     borderColor: colors.white,
     opacity: 0.1,
   },
-
   logo: {
     tintColor: colors.blackLogo,
   },
 })
 
 const pink = StyleSheet.create({
-  title: {
-    fontFamily: fonts.title,
-    fontSize: 30,
-    color: colors.white,
-  },
-
-  subtitle: {
-    fontFamily: fonts.light,
-    fontSize: 15,
-    color: colors.white,
-  },
-
-  separator: {
-    borderColor: colors.pinkSeparator,
-  },
-
+  title: { color: colors.white },
+  subtitle: { color: colors.white },
+  separator: { borderColor: colors.pinkSeparator },
   logo: {
     tintColor: colors.pinkLogo,
   },
 })
 
 const white = StyleSheet.create({
-  title: {
-    fontFamily: fonts.title,
-    fontSize: 30,
-    color: colors.black,
-  },
-
-  subtitle: {
-    fontFamily: fonts.light,
-    fontSize: 15,
-    color: colors.black,
-  },
-
+  title: { color: colors.black },
+  subtitle: { color: colors.black },
   separator: {
     borderColor: colors.black,
     opacity: 0.1,
   },
-
   logo: {
     tintColor: colors.whiteLogo,
   },
 })
 
+export type ThemeTypes = 'title' | 'subtitle' | 'separator' | 'logo'
+function style(theme: Theme, type: ThemeTypes) {
+  switch (theme) {
+    case 'black':
+      return black[type]
+    case 'white':
+      return white[type]
+    case 'pink':
+      return pink[type]
+  }
+}
+
 export default {
-  pink,
-  black,
-  white,
+  style,
 }

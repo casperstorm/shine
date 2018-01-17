@@ -14,6 +14,8 @@ export default StyleSheet.create({
   },
 
   title: {
+    fontFamily: 'Rubik-Bold',
+    fontSize: 30,
     marginLeft: 12,
     marginRight: 12,
     textAlign: 'left',
@@ -21,6 +23,8 @@ export default StyleSheet.create({
   },
 
   subtitle: {
+    fontFamily: 'Rubik-Light',
+    fontSize: 15,
     marginLeft: 12,
     marginRight: 12,
     marginBottom: 25,

@@ -2,10 +2,11 @@
 import React from 'react'
 import { Text, View, TouchableHighlight } from 'react-native'
 
-import type { Theme } from '../../store/types'
+import type { Theme } from '../../types'
 import Asset from '../../components/asset'
 
 import styles from './styles'
+import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
 
 export type Props = {
@@ -17,16 +18,7 @@ export type Props = {
 }
 
 class JumboCell extends React.Component<Props> {
-  themeStyle = (name: 'title' | 'subtitle' | 'separator' | 'logo') => {
-    switch (this.props.theme) {
-      case 'black':
-        return themes.black[name]
-      case 'white':
-        return themes.white[name]
-      case 'pink':
-        return themes.pink[name]
-    }
-  }
+  themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
 
   render() {
     return (

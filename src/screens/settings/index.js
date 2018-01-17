@@ -4,7 +4,8 @@ import { connect } from 'react-redux'
 import { View, Text, SectionList, TouchableHighlight } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
-import type { Dispatch, State, Theme } from '../../store/types'
+import type { Theme } from '../../types'
+import type { Dispatch, State } from '../../store/types'
 import * as animationDefinitions from './animations'
 import Asset from '../../components/asset'
 
@@ -12,13 +13,14 @@ import { change } from '../../store/theme/actions'
 import * as selectors from '../../store/selectors'
 
 import styles, { navigatorStyle } from './styles'
+import themes from './styles.themes'
 
 Animatable.initializeRegistryWithDefinitions(animationDefinitions)
 
 type Props = {
   navigator: Object,
   dispatch: Dispatch,
-  currentTheme: Theme,
+  theme: Theme,
   randomTheme: Theme,
 }
 
@@ -38,16 +40,22 @@ class SettingsScreen extends React.Component<Props, ComponentState> {
   }
 
   componentDidMount() {
-    this.animateTo(this.props.currentTheme, 1)
+    this.animateTo(this.props.theme, 1)
   }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillReceiveProps = nextProps => {
     if (
       nextProps.randomTheme &&
-      nextProps.randomTheme != nextProps.currentTheme &&
+      nextProps.randomTheme != nextProps.theme &&
       !this.animating
     ) {
-      this.animateTo(nextProps.currentTheme, 500)
+      this.animateTo(nextProps.theme, 500)
+    }
+
+    if (nextProps.theme) {
+      this.props.navigator.setStyle({
+        ...themes.statusBar(nextProps.theme),
+      })
     }
   }
 
@@ -144,7 +152,7 @@ class SettingsScreen extends React.Component<Props, ComponentState> {
 }
 
 const mapStateToProps = (state: State) => ({
-  currentTheme: selectors.currentTheme(state),
+  theme: selectors.currentTheme(state),
   randomTheme: selectors.randomTheme(state),
 })
 

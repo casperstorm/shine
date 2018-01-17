@@ -62,9 +62,9 @@ Button.propTypes = {
 /* eslint-disable react/display-name */
 Icon.LogoDark = (props: Object) => <Icon source={require('../../../assets/images/icLogoDark.png')}  style={props.style} />
 Icon.Shadow = (props: Object) => <Icon source={require('../../../assets/images/bottom_gradient.png')} style={[styles.shadow, props.style]} />
-Icon.Negative = () => <Icon source={require('../../../assets/images/icSkull.png')} />
-Icon.Positive = () => <Icon source={require('../../../assets/images/icHeart.png')} />
-Icon.Important = () => <Icon source={require('../../../assets/images/icImportant.png')} />
+Icon.Negative = (props: Object) => <Icon source={require('../../../assets/images/icSkull.png')} style={props.style}  />
+Icon.Positive = (props: Object) => <Icon source={require('../../../assets/images/icHeart.png')} style={props.style}  />
+Icon.Important = (props: Object) => <Icon source={require('../../../assets/images/icImportant.png')} style={props.style}  />
 Icon.CrossDark = (props: Object) => <Icon source={require('../../../assets/images/icCrossDark.png')} style={props.style} />
 /* eslint-enable prettier/prettier */
 

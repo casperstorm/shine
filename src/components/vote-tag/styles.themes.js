@@ -1,5 +1,6 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
+import type { Theme } from '../../types'
 
 const colors = {
   white: '#F6F7F6',
@@ -8,19 +9,35 @@ const colors = {
 }
 
 const black = StyleSheet.create({
-  vote: { backgroundColor: colors.black },
+  container: { backgroundColor: colors.black },
+  title: { color: colors.white },
+  icon: { tintColor: colors.white },
 })
 
 const pink = StyleSheet.create({
-  vote: { backgroundColor: colors.pink },
+  container: { backgroundColor: colors.pink },
+  title: { color: colors.white },
+  icon: { tintColor: colors.white },
 })
 
 const white = StyleSheet.create({
-  vote: { backgroundColor: colors.white },
+  container: { backgroundColor: colors.white },
+  title: { color: colors.black },
+  icon: { tintColor: colors.black },
 })
 
+export type ThemeTypes = 'container' | 'title' | 'icon'
+function style(theme: Theme, type: ThemeTypes) {
+  switch (theme) {
+    case 'black':
+      return black[type]
+    case 'white':
+      return white[type]
+    case 'pink':
+      return pink[type]
+  }
+}
+
 export default {
-  pink,
-  black,
-  white,
+  style,
 }

@@ -15,5 +15,3 @@ export type GetState = () => State
 export type ThunkAction = (dispatch: Dispatch, getState: GetState) => mixed
 export type PromiseAction = Promise<Action>
 export type ThunkActionCreator<Args> = Args => ThunkAction
-
-export type Theme = 'white' | 'black' | 'pink'

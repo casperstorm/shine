@@ -1,10 +1,9 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
 
-import theme from '../../theme'
-
 export const navigatorStyle = {
-  ...theme.navigatorStyle.common,
+  statusBarTextColorSchemeSingleScreen: 'light',
+  navBarHidden: true,
 }
 
 export default StyleSheet.create({
