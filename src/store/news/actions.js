@@ -30,8 +30,10 @@ export type Action = ActionNewsGreetings | ActionNewsDate | ActionNewsFetch
 export const itemsFetch = (): ThunkAction => (dispatch, getState) =>
   fetch(Config.API_URL)
     .then(response => response.json())
-    .then(json => {
-      dispatch({ type: actionTypes.NEWS_FETCH, value: json.results })
+    .then(json => dispatch({ type: actionTypes.NEWS_FETCH, value: json.results }))
+    .catch(err => {
+      /* API only allows to fetch every 2 seconds.
+         We could add some better error handling than now. */
     })
 
 export const refreshDate = (date: Date): ActionNewsDate => ({
