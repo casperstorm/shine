@@ -17,12 +17,17 @@ import themes from './styles.themes'
 
 Animatable.initializeRegistryWithDefinitions(animationDefinitions)
 
-type Props = {
-  navigator: Object,
+type OwnProps = {
+  navigator: Object, // TODO type this
+}
+
+type ReduxProps = {
   dispatch: Dispatch,
   theme: Theme,
-  randomTheme: Theme,
+  randomTheme: Theme, // TODO better naming
 }
+
+type Props = OwnProps & ReduxProps
 
 type ComponentState = {
   animationState: AnimationState,
@@ -30,7 +35,7 @@ type ComponentState = {
 }
 type AnimationState = Theme
 
-class SettingsScreen extends React.Component<Props, ComponentState> {
+export class SettingsScreen extends React.Component<Props, ComponentState> {
   themeView: any
   static navigatorStyle = navigatorStyle
 
@@ -43,7 +48,7 @@ class SettingsScreen extends React.Component<Props, ComponentState> {
     this.animateTo(this.props.theme, 1)
   }
 
-  componentWillReceiveProps = nextProps => {
+  componentWillReceiveProps = (nextProps: Props) => {
     if (
       nextProps.randomTheme &&
       nextProps.randomTheme != nextProps.theme &&
@@ -113,7 +118,7 @@ class SettingsScreen extends React.Component<Props, ComponentState> {
     return item.key
   }
 
-  renderThemeCell = ({ item }) => {
+  renderThemeCell = ({ item }: Object) => {
     return (
       <TouchableHighlight
         onPress={() => {

@@ -1,7 +1,9 @@
 /* @flow */
 import { Platform } from 'react-native'
 import { applyMiddleware, compose } from 'redux'
+// $FlowFixMe: not getting redux-persist library
 import storage from 'redux-persist/lib/storage'
+// $FlowFixMe: not getting redux-persist library
 import { persistStore, persistCombineReducers } from 'redux-persist'
 import { composeWithDevTools } from 'remote-redux-devtools' //eslint-disable-line
 import Reactotron from 'reactotron-react-native'

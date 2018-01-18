@@ -16,6 +16,9 @@
 ; Ignore polyfills
 .*/Libraries/polyfills/.*
 
+; some issues with redux-persist
+.*/node_modules/redux-persist
+
 ; issues with radium
 .*node_modules/radium/src/*
 
