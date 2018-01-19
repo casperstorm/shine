@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { View, SectionList } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
-import type { Theme } from '../../types'
+import type { Theme, Navigator } from '../../types'
 import type { Dispatch, State } from '../../store/types'
 import ThemeCell from '../../components/theme-cell'
 import APICell from '../../components/api-cell'
@@ -14,13 +14,14 @@ import * as animationDefinitions from './animations'
 import { setTheme } from '../../store/config/actions'
 import * as selectors from '../../store/selectors'
 
+import type { ThemeTypes } from './styles.themes'
 import styles, { navigatorStyle } from './styles'
 import themes from './styles.themes'
 
 Animatable.initializeRegistryWithDefinitions(animationDefinitions)
 
 type OwnProps = {
-  navigator: Object, // TODO type this
+  navigator: Navigator,
 }
 
 type ReduxProps = {
@@ -31,65 +32,61 @@ type ReduxProps = {
 type Props = OwnProps & ReduxProps
 
 type ComponentState = {
-  animationState: AnimationState,
   animating: boolean,
 }
-type AnimationState = Theme
 
 export class SettingsScreen extends React.Component<Props, ComponentState> {
-  themeView: any
   static navigatorStyle = navigatorStyle
 
+  /* TODO:
+     ThemeView shouldn't be typed to 'any', however react-native-animatble does not work that well with Flow.
+     Is there any solution? */
+  themeView: any
+
   state = {
-    animationState: 'white',
     animating: false,
   }
 
-  componentDidMount() {
-    this.animateTo(this.props.theme, 1)
+  themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
+
+  componentWillMount = () => {
+    this.statusBarTheme(this.props.theme)
   }
 
   componentWillReceiveProps = (nextProps: Props) => {
     if (nextProps.theme) {
-      this.props.navigator.setStyle({
-        ...themes.statusBar(nextProps.theme),
-      })
+      this.statusBarTheme(nextProps.theme)
     }
   }
 
-  animateTo = (state: AnimationState, duration: number) => {
+  statusBarTheme = (theme: Theme) =>
+    this.props.navigator.setStyle({
+      ...themes.statusBar(theme),
+    })
+
+  animateTo = (theme: Theme, duration: number) => {
     if (this.state.animating) Promise.reject()
 
-    const formerState = this.state.animationState
+    const formerTheme = this.props.theme
     const animations = []
 
-    if (formerState === 'white' && state === 'black') {
+    if (formerTheme === 'white' && theme === 'black') {
       animations.push(() => this.themeView.themeWhiteBlack(duration))
-    }
-
-    if (formerState === 'white' && state === 'pink') {
+    } else if (formerTheme === 'white' && theme === 'pink') {
       animations.push(() => this.themeView.themeWhitePink(duration))
-    }
-
-    if (formerState === 'black' && state === 'white') {
+    } else if (formerTheme === 'black' && theme === 'white') {
       animations.push(() => this.themeView.themeBlackWhite(duration))
-    }
-
-    if (formerState === 'black' && state === 'pink') {
+    } else if (formerTheme === 'black' && theme === 'pink') {
       animations.push(() => this.themeView.themeBlackPink(duration))
-    }
-
-    if (formerState === 'pink' && state === 'white') {
+    } else if (formerTheme === 'pink' && theme === 'white') {
       animations.push(() => this.themeView.themePinkWhite(duration))
-    }
-
-    if (formerState === 'pink' && state === 'black') {
+    } else if (formerTheme === 'pink' && theme === 'black') {
       animations.push(() => this.themeView.themePinkBlack(duration))
     }
 
     this.setState({ animating: true })
     return Promise.all(animations.map(f => f.call())).then(() =>
-      this.setState({ animating: false, animationState: state })
+      this.setState({ animating: false })
     )
   }
 
@@ -134,7 +131,12 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
   renderThemeCell = ({ item }: Object) => (
     <ThemeCell
       onPress={() => {
-        const theme = 'pink'
+        var theme = 'white'
+        if (this.props.theme === 'white') {
+          theme = 'pink'
+        } else if (this.props.theme === 'pink') {
+          theme = 'white'
+        }
         this.props.dispatch(setTheme(theme))
         this.animateTo(theme, 500)
       }}
@@ -148,10 +150,11 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
           ref={container => {
             this.themeView = container
           }}
-          style={styles.theme}
+          style={[styles.theme, this.themeStyle('container')]}
         />
         <View style={styles.close}>
           <Asset.Button.CrossDark
+            iconStyle={this.themeStyle('close')}
             onPress={() => {
               this.props.navigator.dismissModal()
             }}
