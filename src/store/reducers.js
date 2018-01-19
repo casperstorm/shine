@@ -1,16 +1,16 @@
 /* @flow */
 import news from './news/reducer'
-import theme from './theme/reducer'
+import config from './config/reducer'
 
 import type { State as StateNews } from './news/reducer'
-import type { State as StateTheme } from './theme/reducer'
+import type { State as StateConfig } from './config/reducer'
 
 export default {
   news,
-  theme,
+  config,
 }
 
 export type State = {|
   news: StateNews,
-  theme: StateTheme,
+  config: StateConfig,
 |}

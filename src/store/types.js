@@ -4,10 +4,10 @@ import type { Store as ReduxStore } from 'redux'
 
 import type { State as _State } from './reducers'
 import type { Action as ActionNews } from './news/actions'
-import type { Action as ActionTheme } from './theme/actions'
+import type { Action as ActionConfig } from './config/actions'
 
 export type State = _State
-export type Action = ActionNews | ActionTheme
+export type Action = ActionNews | ActionConfig
 export type Store = ReduxStore<State, Action>
 
 export type Dispatch = (action: Action | ThunkAction | PromiseAction) => any

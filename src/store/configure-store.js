@@ -14,7 +14,7 @@ import type { State } from './types'
 const persistConfig = {
   key: '@Shine:store',
   storage,
-  whitelist: ['theme'],
+  whitelist: ['config'],
 }
 
 export default function configureStore(onStoreReady: () => void, initialState?: State) {

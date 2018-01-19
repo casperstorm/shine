@@ -1,15 +1,17 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, Text, SectionList, TouchableHighlight } from 'react-native'
+import { View, SectionList } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
 import type { Theme } from '../../types'
 import type { Dispatch, State } from '../../store/types'
-import * as animationDefinitions from './animations'
+import ThemeCell from '../../components/theme-cell'
+import APICell from '../../components/api-cell'
 import Asset from '../../components/asset'
+import * as animationDefinitions from './animations'
 
-import { change } from '../../store/theme/actions'
+import { setTheme } from '../../store/config/actions'
 import * as selectors from '../../store/selectors'
 
 import styles, { navigatorStyle } from './styles'
@@ -24,7 +26,6 @@ type OwnProps = {
 type ReduxProps = {
   dispatch: Dispatch,
   theme: Theme,
-  randomTheme: Theme, // TODO better naming
 }
 
 type Props = OwnProps & ReduxProps
@@ -49,14 +50,6 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
   }
 
   componentWillReceiveProps = (nextProps: Props) => {
-    if (
-      nextProps.randomTheme &&
-      nextProps.randomTheme != nextProps.theme &&
-      !this.animating
-    ) {
-      this.animateTo(nextProps.theme, 500)
-    }
-
     if (nextProps.theme) {
       this.props.navigator.setStyle({
         ...themes.statusBar(nextProps.theme),
@@ -111,6 +104,15 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
         ],
         renderItem: this.renderThemeCell,
       },
+      {
+        data: [
+          {
+            key: 'api',
+            title: 'this is api row',
+          },
+        ],
+        renderItem: this.renderAPICell,
+      },
     ]
   }
 
@@ -118,17 +120,26 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
     return item.key
   }
 
-  renderThemeCell = ({ item }: Object) => {
-    return (
-      <TouchableHighlight
-        onPress={() => {
-          this.props.dispatch(change(this.props.randomTheme))
-        }}
-      >
-        <Text>{item.title}</Text>
-      </TouchableHighlight>
-    )
+  apiTextInputChange = (text: string) => {
+    console.log(text)
   }
+
+  renderAPICell = ({ item }: Object) => (
+    <APICell
+      onPress={() => {}}
+      onTextInputChange={text => this.apiTextInputChange(text)}
+    />
+  )
+
+  renderThemeCell = ({ item }: Object) => (
+    <ThemeCell
+      onPress={() => {
+        const theme = 'pink'
+        this.props.dispatch(setTheme(theme))
+        this.animateTo(theme, 500)
+      }}
+    />
+  )
 
   render() {
     return (
@@ -158,7 +169,6 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
 const mapStateToProps = (state: State) => ({
   theme: selectors.currentTheme(state),
-  randomTheme: selectors.randomTheme(state),
 })
 
 export default connect(mapStateToProps)(SettingsScreen)

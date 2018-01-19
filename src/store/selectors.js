@@ -28,10 +28,9 @@ export const newsUpdatedDate = createSelector(items, date, (_, date) => date)
 // Theme
 // ================
 
-const current = (state: State) => state.theme.current
-const themes = (state: State) => state.theme.all
+const theme = (state: State) => state.config.theme
 
-export const currentTheme = createSelector(current, currentTheme => currentTheme)
-export const randomTheme = createSelector(themes, current, (themes, current) =>
-  _.sample(_.filter(themes, t => t != current))
-)
+export const currentTheme = createSelector(theme, theme => {
+  console.log(theme)
+  return theme.current
+})

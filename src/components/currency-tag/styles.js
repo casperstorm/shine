@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-import theme from '../../theme'
-
 export default StyleSheet.create({
   container: {
     height: 23,
@@ -12,7 +10,9 @@ export default StyleSheet.create({
   },
 
   title: {
-    ...theme.text.tag,
+    fontFamily: 'Rubik-Bold',
+    fontSize: 12,
+    color: '#FFFFFF',
     marginLeft: 8,
     marginRight: 8,
   },

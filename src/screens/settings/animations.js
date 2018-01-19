@@ -1,56 +1,66 @@
 /* @flow */
-import themes from '../../theme'
+
+/*
+  For react-native-anmiation to transition between colors,
+  they need to be written as rgba.
+*/
+
+const colors = {
+  white: 'rgba(255, 255, 255, 1)',
+  black: 'rgba(0, 0, 0, 1)',
+  pink: 'rgba(253, 62, 129, 1)',
+}
 
 export const themeWhiteBlack = {
   from: {
-    backgroundColor: themes.color.white,
+    backgroundColor: colors.white,
   },
   to: {
-    backgroundColor: themes.color.black,
+    backgroundColor: colors.black,
   },
 }
 
 export const themeWhitePink = {
   from: {
-    backgroundColor: themes.color.white,
+    backgroundColor: colors.white,
   },
   to: {
-    backgroundColor: themes.color.pink,
+    backgroundColor: colors.pink,
   },
 }
 
 export const themeBlackWhite = {
   from: {
-    backgroundColor: themes.color.black,
+    backgroundColor: colors.black,
   },
   to: {
-    backgroundColor: themes.color.white,
+    backgroundColor: colors.white,
   },
 }
 
 export const themeBlackPink = {
   from: {
-    backgroundColor: themes.color.black,
+    backgroundColor: colors.black,
   },
   to: {
-    backgroundColor: themes.color.pink,
+    backgroundColor: colors.pink,
   },
 }
 
 export const themePinkWhite = {
   from: {
-    backgroundColor: themes.color.pink,
+    backgroundColor: colors.pink,
   },
   to: {
-    backgroundColor: themes.color.white,
+    backgroundColor: colors.white,
   },
 }
 
 export const themePinkBlack = {
   from: {
-    backgroundColor: themes.color.pink,
+    backgroundColor: colors.pink,
   },
   to: {
-    backgroundColor: themes.color.black,
+    backgroundColor: colors.black,
   },
 }
