@@ -147,10 +147,7 @@ class NewsScreen extends React.Component<Props, ComponentState> {
         title={item.title}
         subtitle={item.description}
         onLogoPress={() => {
-          this.props.navigator.showModal({
-            screen: 'Shine.Settings',
-            animated: true,
-          })
+          this.props.navigator.showModal({ screen: 'Shine.Settings' })
         }}
       />
     )

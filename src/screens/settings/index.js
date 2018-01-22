@@ -7,11 +7,11 @@ import * as Animatable from 'react-native-animatable'
 import type { Theme, Navigator } from '../../types'
 import type { Dispatch, State } from '../../store/types'
 import ThemeCell from '../../components/theme-cell'
-import APICell from '../../components/api-cell'
+import TokenCell from '../../components/token-cell'
 import Asset from '../../components/asset'
 import * as animationDefinitions from './animations'
 
-import { setTheme } from '../../store/config/actions'
+import { setTheme, setNewsToken } from '../../store/config/actions'
 import * as selectors from '../../store/selectors'
 
 import type { ThemeTypes } from './styles.themes'
@@ -27,12 +27,14 @@ type OwnProps = {
 type ReduxProps = {
   dispatch: Dispatch,
   theme: Theme,
+  token: string,
 }
 
 type Props = OwnProps & ReduxProps
 
 type ComponentState = {
   animating: boolean,
+  token: string | null,
 }
 
 export class SettingsScreen extends React.Component<Props, ComponentState> {
@@ -45,11 +47,13 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
   state = {
     animating: false,
+    token: null,
   }
 
   themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
 
-  componentWillMount = () => {
+  componentDidMount = () => {
+    this.setState({ token: this.props.token })
     this.statusBarTheme(this.props.theme)
   }
 
@@ -107,16 +111,18 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
     return item.key
   }
 
-  apiTextInputChange = (text: string) => {
-    console.log(text)
+  renderAPICell = ({ item }: Object) => {
+    return (
+      <TokenCell
+        theme={this.props.theme}
+        value={this.state.token}
+        onPress={() => {
+          console.log('should go to cryptopanic')
+        }}
+        onTextInputChange={text => this.setState({ token: text })}
+      />
+    )
   }
-
-  renderAPICell = ({ item }: Object) => (
-    <APICell
-      onPress={() => {}}
-      onTextInputChange={text => this.apiTextInputChange(text)}
-    />
-  )
 
   renderThemeCell = ({ item }: Object) => (
     <ThemeCell
@@ -146,6 +152,9 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
           <Asset.Button.CrossDark
             iconStyle={this.themeStyle('close')}
             onPress={() => {
+              if (this.state.token) {
+                this.props.dispatch(setNewsToken(this.state.token))
+              }
               this.props.navigator.dismissModal()
             }}
           />
@@ -162,6 +171,7 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
 const mapStateToProps = (state: State) => ({
   theme: selectors.currentTheme(state),
+  token: selectors.currentNewsToken(state),
 })
 
 export default connect(mapStateToProps)(SettingsScreen)

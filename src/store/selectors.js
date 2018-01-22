@@ -29,8 +29,7 @@ export const newsUpdatedDate = createSelector(items, date, (_, date) => date)
 // ================
 
 const theme = (state: State) => state.config.theme
+const tokens = (state: State) => state.config.tokens
 
-export const currentTheme = createSelector(theme, theme => {
-  console.log(theme)
-  return theme.current
-})
+export const currentTheme = createSelector(theme, theme => theme.current)
+export const currentNewsToken = createSelector(tokens, tokens => tokens.news)

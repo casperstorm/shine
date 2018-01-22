@@ -5,7 +5,7 @@ import type { Theme } from '../../types'
 
 export type State = {
   tokens: {
-    news: ?string,
+    news: string,
   },
   theme: {
     current: Theme,
@@ -14,7 +14,7 @@ export type State = {
 
 export const initialState = {
   tokens: {
-    news: null,
+    news: 'CryptoPanic API Token',
   },
   theme: {
     current: 'pink',

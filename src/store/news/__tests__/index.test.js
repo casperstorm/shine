@@ -1,14 +1,14 @@
 import _ from 'lodash'
-import configureStore from 'redux-mock-store'
-import thunk from 'redux-thunk'
+// import configureStore from 'redux-mock-store'
+// import thunk from 'redux-thunk'
 
 import reducer, { initialState } from '../reducer'
 import { Greetings } from '../../../utils/greetings'
 import * as selectors from '../../selectors'
-import { actionTypes, itemsFetch, refreshDate, greetings } from '../actions'
+import { actionTypes, refreshDate, greetings } from '../actions'
 
-const middlewares = [thunk]
-const mockStore = configureStore(middlewares)
+// const middlewares = [thunk]
+// const mockStore = configureStore(middlewares)
 
 describe('reducer', () => {
   it('should return initial state', () => {
@@ -46,18 +46,19 @@ describe('reducer', () => {
 })
 
 describe('actions', () => {
-  it(`should fetch items correctly`, async () => {
-    const items = [{ title: 'foobar' }]
-    const store = mockStore({ items: [] })
-    fetch.mockResponse(JSON.stringify({ results: items }))
+  // TODO:
+  // it(`should fetch items correctly`, async () => {
+  //   const items = [{ title: 'foobar' }]
+  //   const store = mockStore({ items: [] })
+  //   fetch.mockResponse(JSON.stringify({ results: items }))
 
-    store.dispatch(itemsFetch()).then(() => {
-      expect(store.getActions()).toEqual({
-        type: actionTypes.NEWS_FETCH,
-        value: items,
-      })
-    })
-  })
+  //   store.dispatch(itemsFetch()).then(() => {
+  //     expect(store.getActions()).toEqual({
+  //       type: actionTypes.NEWS_FETCH,
+  //       value: items,
+  //     })
+  //   })
+  // })
 
   it(`should add new date`, () => {
     const date = new Date()
