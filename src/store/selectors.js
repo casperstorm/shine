@@ -25,7 +25,7 @@ export const selectRandomGreetings = createSelector(
 export const newsUpdatedDate = createSelector(items, date, (_, date) => date)
 
 // ================
-// Theme
+// Config
 // ================
 
 const theme = (state: State) => state.config.theme
