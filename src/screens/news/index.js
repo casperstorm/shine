@@ -10,7 +10,7 @@ import {
 } from 'react-native'
 import moment from 'moment'
 
-import type { Theme } from '../../types'
+import type { Theme, Navigator } from '../../types'
 import type { Dispatch, State } from '../../store/types'
 import JumboCell from '../../components/jumbo-cell'
 import NewsCell from '../../components/news-cell'
@@ -26,7 +26,7 @@ import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
 
 type Props = {
-  navigator: Object,
+  navigator: Navigator,
 
   // Redux
   dispatch: Dispatch,
