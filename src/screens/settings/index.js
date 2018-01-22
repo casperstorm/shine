@@ -93,21 +93,11 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
   sections = () => {
     return [
       {
-        data: [
-          {
-            key: 'theme',
-            title: 'this is theme row',
-          },
-        ],
+        data: [{ key: 'theme' }],
         renderItem: this.renderThemeCell,
       },
       {
-        data: [
-          {
-            key: 'api',
-            title: 'this is api row',
-          },
-        ],
+        data: [{ key: 'api' }],
         renderItem: this.renderAPICell,
       },
     ]
