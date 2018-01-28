@@ -214,6 +214,7 @@ class NewsScreen extends React.Component<Props, ComponentState> {
   )
 
   render() {
+    console.log(`theme: ${this.props.theme}`)
     return (
       <View style={[styles.container, this.themeStyle('container')]}>
         {!this.state.hasShownIntro && this.renderIntro()}

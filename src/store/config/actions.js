@@ -8,7 +8,7 @@ export const actionTypes = {
 
 export type ActionConfigSetNewsToken = {
   type: 'CONFIG_SET_NEWS_TOKEN',
-  value: string,
+  value: string | null,
 }
 
 export type ActionConfigSetTheme = {
@@ -18,7 +18,7 @@ export type ActionConfigSetTheme = {
 
 export type Action = ActionConfigSetNewsToken | ActionConfigSetTheme
 
-export const setNewsToken = (token: string): ActionConfigSetNewsToken => ({
+export const setNewsToken = (token: string | null): ActionConfigSetNewsToken => ({
   type: actionTypes.CONFIG_SET_NEWS_TOKEN,
   value: token,
 })

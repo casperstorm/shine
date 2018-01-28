@@ -126,13 +126,8 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
   renderThemeCell = ({ item }: Object) => (
     <ThemeCell
-      onPress={() => {
-        var theme = 'white'
-        if (this.props.theme === 'white') {
-          theme = 'pink'
-        } else if (this.props.theme === 'pink') {
-          theme = 'white'
-        }
+      theme={this.props.theme}
+      onPress={theme => {
         this.props.dispatch(setTheme(theme))
         this.animateTo(theme, 500)
       }}
@@ -152,9 +147,11 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
           <Asset.Button.CrossDark
             iconStyle={this.themeStyle('close')}
             onPress={() => {
-              if (this.state.token) {
-                this.props.dispatch(setNewsToken(this.state.token))
+              var token = null
+              if (this.state.token && this.state.token.length > 0) {
+                token = this.state.token
               }
+              this.props.dispatch(setNewsToken(token))
               this.props.navigator.dismissModal()
             }}
           />

@@ -23,6 +23,7 @@ class TokenCell extends React.Component<Props> {
         <View style={styles.container}>
           <Text style={[styles.title, this.themeStyle('title')]}>{`API token`}</Text>
           <TextInput
+            placeholder={'CryptoPanic API Token'}
             value={this.props.value ? this.props.value : ''}
             style={[styles.input, this.themeStyle('input')]}
             onChangeText={this.props.onTextInputChange}
