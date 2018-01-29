@@ -17,7 +17,7 @@ export const initialState = {
     news: null,
   },
   theme: {
-    current: 'pink',
+    current: 'black',
   },
 }
 
@@ -25,7 +25,7 @@ const config = (state: State = initialState, action: Action) => {
   switch (action.type) {
     case actionTypes.CONFIG_SET_NEWS_TOKEN:
       return {
-        ...initialState,
+        ...state,
         tokens: {
           news: action.value,
         },
@@ -33,7 +33,7 @@ const config = (state: State = initialState, action: Action) => {
 
     case actionTypes.CONFIG_SET_THEME:
       return {
-        ...initialState,
+        ...state,
         theme: {
           current: action.value,
         },
