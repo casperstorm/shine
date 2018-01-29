@@ -1,6 +1,6 @@
 /* @flow */
 import { Platform } from 'react-native'
-import { applyMiddleware, compose } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 // $FlowFixMe: not getting redux-persist library
 import storage from 'redux-persist/lib/storage'
 // $FlowFixMe: not getting redux-persist library
@@ -28,7 +28,9 @@ export default function configureStore(onStoreReady: () => void, initialState?: 
   const enhancerBase = compose(applyMiddleware(...middleware))
   const enhancer = __DEV__ ? devToolsComposeEnhancers(enhancerBase) : enhancerBase
   const reducer = persistCombineReducers(persistConfig, reducers)
-  const store = Reactotron.createStore(reducer, initialState, enhancer)
+  const store = __DEV__
+    ? Reactotron.createStore(reducer, initialState, enhancer)
+    : createStore(reducer, initialState, enhancer)
 
   persistStore(store, {}, onStoreReady)
 
