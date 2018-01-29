@@ -1,7 +1,7 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, SectionList } from 'react-native'
+import { View, SectionList, Linking } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
 import type { Theme, Navigator } from '../../types'
@@ -117,7 +117,7 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
         theme={this.props.theme}
         value={this.state.token}
         onPress={() => {
-          console.log('should go to cryptopanic')
+          Linking.openURL('https://cryptopanic.com/about/api/')
         }}
         onTextInputChange={text => this.setState({ token: text })}
       />
