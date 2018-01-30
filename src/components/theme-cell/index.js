@@ -43,7 +43,7 @@ class ThemeCell extends React.Component<Props> {
     circles.push(this.circle(colors.white, 'white'))
     circles.push(this.circle(colors.black, 'black'))
     circles.push(this.circle(colors.pink, 'pink'))
-
+    circles.push(this.circle(colors.blue, 'blue'))
     return circles
   }
 }

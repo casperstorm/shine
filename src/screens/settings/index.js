@@ -78,14 +78,26 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
       animations.push(() => this.themeView.themeWhiteBlack(duration))
     } else if (formerTheme === 'white' && theme === 'pink') {
       animations.push(() => this.themeView.themeWhitePink(duration))
+    } else if (formerTheme === 'white' && theme === 'blue') {
+      animations.push(() => this.themeView.themeWhiteBlue(duration))
     } else if (formerTheme === 'black' && theme === 'white') {
       animations.push(() => this.themeView.themeBlackWhite(duration))
     } else if (formerTheme === 'black' && theme === 'pink') {
       animations.push(() => this.themeView.themeBlackPink(duration))
+    } else if (formerTheme === 'black' && theme === 'blue') {
+      animations.push(() => this.themeView.themeBlackBlue(duration))
     } else if (formerTheme === 'pink' && theme === 'white') {
       animations.push(() => this.themeView.themePinkWhite(duration))
     } else if (formerTheme === 'pink' && theme === 'black') {
       animations.push(() => this.themeView.themePinkBlack(duration))
+    } else if (formerTheme === 'pink' && theme === 'blue') {
+      animations.push(() => this.themeView.themePinkBlue(duration))
+    } else if (formerTheme === 'blue' && theme === 'white') {
+      animations.push(() => this.themeView.themeBlueWhite(duration))
+    } else if (formerTheme === 'blue' && theme === 'black') {
+      animations.push(() => this.themeView.themeBlueBlack(duration))
+    } else if (formerTheme === 'blue' && theme === 'pink') {
+      animations.push(() => this.themeView.themeBluePink(duration))
     }
 
     this.setState({ animating: true })

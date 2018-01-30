@@ -1,5 +1,5 @@
 /* @flow */
-export type Theme = 'white' | 'black' | 'pink'
+export type Theme = 'white' | 'black' | 'pink' | 'blue'
 
 type NavigatorParams = { screen: 'Shine.Newsn' } | { screen: 'Shine.Settings' }
 

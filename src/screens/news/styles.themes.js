@@ -6,6 +6,7 @@ const colors = {
   white: '#FFFFFF',
   black: '#000000',
   pink: '#FD3E81',
+  blue: '#1900FF',
 }
 
 const statusBarColors = {
@@ -28,6 +29,11 @@ const white = StyleSheet.create({
   shadow: { tintColor: colors.white },
 })
 
+const blue = StyleSheet.create({
+  container: { backgroundColor: colors.blue },
+  shadow: { tintColor: colors.blue },
+})
+
 export type ThemeTypes = 'container' | 'shadow'
 function style(theme: Theme, type: ThemeTypes) {
   switch (theme) {
@@ -37,6 +43,8 @@ function style(theme: Theme, type: ThemeTypes) {
       return white[type]
     case 'pink':
       return pink[type]
+    case 'blue':
+      return blue[type]
   }
 }
 
@@ -48,6 +56,8 @@ function statusBar(theme: Theme) {
       return { statusBarTextColorSchemeSingleScreen: statusBarColors.black }
     case 'pink':
       return { statusBarTextColorSchemeSingleScreen: statusBarColors.white }
+    case 'blue':
+      return { statusBarTextColorSchemeSingleScreen: statusBarColors.white }
   }
 }
 
@@ -58,6 +68,8 @@ function refreshControl(theme: Theme) {
     case 'white':
       return colors.black
     case 'pink':
+      return colors.white
+    case 'blue':
       return colors.white
   }
 }
