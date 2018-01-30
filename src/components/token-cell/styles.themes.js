@@ -1,65 +1,46 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
-
-const colors = {
-  white: '#FFFFFF',
-  black: '#000000',
-
-  pinkSeparator: 'rgba(226, 33, 108, 1)',
-  blackSeparator: 'rgba(255, 255, 255, 0.1)',
-  whiteSeparator: 'rgba(0, 0, 0, 0.1)',
-  blueSeparator: 'rgba(255, 255, 255, 0.3)',
-}
+import { colors } from '../../utils/colors'
 
 const black = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
   input: {
-    color: colors.white,
-    borderBottomColor: colors.blackSeparator,
+    color: colors.white.primary,
+    borderBottomColor: colors.black.secondary,
   },
-  separator: {
-    borderColor: colors.white,
-    opacity: 0.1,
-  },
+  separator: { borderColor: colors.black.secondary },
 })
 
 const white = StyleSheet.create({
-  title: { color: colors.black },
-  subtitle: { color: colors.black },
+  title: { color: colors.black.primary },
+  subtitle: { color: colors.black.primary },
   input: {
-    color: colors.black,
-    borderBottomColor: colors.whiteSeparator,
+    color: colors.black.primary,
+    borderBottomColor: colors.white.secondary,
   },
-  separator: {
-    borderColor: colors.black,
-    opacity: 0.1,
-  },
+  separator: { borderColor: colors.white.secondary },
 })
 
 const pink = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
   input: {
-    color: colors.white,
-    borderBottomColor: colors.pinkSeparator,
+    color: colors.white.primary,
+    borderBottomColor: colors.pink.secondary,
   },
-  separator: {
-    borderColor: colors.pinkSeparator,
-  },
+  separator: { borderColor: colors.pink.secondary },
 })
 
 const blue = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
   input: {
-    color: colors.white,
-    borderBottomColor: colors.blueSeparator,
+    color: colors.white.primary,
+    borderBottomColor: colors.blue.secondary,
   },
-  separator: {
-    borderColor: colors.blueSeparator,
-  },
+  separator: { borderColor: colors.blue.secondary },
 })
 
 export type ThemeTypes = 'title' | 'subtitle' | 'input' | 'separator'

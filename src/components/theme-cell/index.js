@@ -4,9 +4,9 @@ import { Text, View, TouchableHighlight } from 'react-native'
 
 import type { Theme } from '../../types'
 import type { ThemeTypes } from './styles.themes'
-import { colors } from './styles.themes'
 import styles from './styles'
 import themes from './styles.themes'
+import { colors } from '../../utils/colors'
 
 export type Props = {
   theme: Theme,
@@ -40,10 +40,10 @@ class ThemeCell extends React.Component<Props> {
 
   themes = () => {
     const circles = []
-    circles.push(this.circle(colors.white, 'white'))
-    circles.push(this.circle(colors.black, 'black'))
-    circles.push(this.circle(colors.pink, 'pink'))
-    circles.push(this.circle(colors.blue, 'blue'))
+    circles.push(this.circle(colors.white.primary, 'white'))
+    circles.push(this.circle(colors.black.primary, 'black'))
+    circles.push(this.circle(colors.pink.primary, 'pink'))
+    circles.push(this.circle(colors.blue.primary, 'blue'))
     return circles
   }
 }

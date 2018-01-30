@@ -1,47 +1,30 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
-
-const colors = {
-  white: '#FFFFFF',
-  black: '#000000',
-
-  pinkSeparator: '#E2216C',
-  blueSeparator: 'rgba(255, 255, 255, 0.3)',
-}
+import { colors } from '../../utils/colors'
 
 const black = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
-  separator: {
-    borderColor: colors.white,
-    opacity: 0.1,
-  },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
+  separator: { borderColor: colors.black.secondary },
 })
 
 const white = StyleSheet.create({
-  title: { color: colors.black },
-  subtitle: { color: colors.black },
-  separator: {
-    borderColor: colors.black,
-    opacity: 0.1,
-  },
+  title: { color: colors.black.primary },
+  subtitle: { color: colors.black.primary },
+  separator: { borderColor: colors.white.secondary },
 })
 
 const pink = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
-  separator: {
-    borderColor: colors.pinkSeparator,
-  },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
+  separator: { borderColor: colors.pink.secondary },
 })
 
 const blue = StyleSheet.create({
-  title: { color: colors.white },
-  subtitle: { color: colors.white },
-  separator: {
-    borderColor: colors.blueSeparator,
-  },
+  title: { color: colors.white.primary },
+  subtitle: { color: colors.white.primary },
+  separator: { borderColor: colors.blue.secondary },
 })
 
 export type ThemeTypes = 'title' | 'subtitle' | 'separator'

@@ -1,36 +1,30 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
-
-const colors = {
-  white: '#F6F7F6',
-  black: '#252525',
-  pink: '#E2216C',
-  blue: '#1900FF',
-}
+import { colors } from '../../utils/colors'
 
 const black = StyleSheet.create({
-  container: { backgroundColor: colors.black },
-  title: { color: colors.white },
-  icon: { tintColor: colors.white },
+  container: { backgroundColor: colors.black.secondary },
+  title: { color: colors.white.primary },
+  icon: { tintColor: colors.white.primary },
 })
 
 const white = StyleSheet.create({
-  container: { backgroundColor: colors.white },
-  title: { color: colors.black },
-  icon: { tintColor: colors.black },
+  container: { backgroundColor: colors.white.secondary },
+  title: { color: colors.black.primary },
+  icon: { tintColor: colors.black.primary },
 })
 
 const pink = StyleSheet.create({
-  container: { backgroundColor: colors.pink },
-  title: { color: colors.white },
-  icon: { tintColor: colors.white },
+  container: { backgroundColor: colors.pink.secondary },
+  title: { color: colors.white.primary },
+  icon: { tintColor: colors.white.primary },
 })
 
 const blue = StyleSheet.create({
-  container: { backgroundColor: colors.blue },
-  title: { color: colors.white },
-  icon: { tintColor: colors.white },
+  container: { backgroundColor: colors.blue.secondary },
+  title: { color: colors.white.primary },
+  icon: { tintColor: colors.white.primary },
 })
 
 export type ThemeTypes = 'container' | 'title' | 'icon'

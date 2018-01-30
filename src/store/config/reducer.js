@@ -17,7 +17,7 @@ export const initialState = {
     news: null,
   },
   theme: {
-    current: 'black',
+    current: 'white',
   },
 }
 

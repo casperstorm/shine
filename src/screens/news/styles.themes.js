@@ -1,13 +1,7 @@
 /* @flow */
 import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
-
-const colors = {
-  white: '#FFFFFF',
-  black: '#000000',
-  pink: '#FD3E81',
-  blue: '#1900FF',
-}
+import { colors } from '../../utils/colors'
 
 const statusBarColors = {
   white: 'light',
@@ -15,23 +9,23 @@ const statusBarColors = {
 }
 
 const black = StyleSheet.create({
-  container: { backgroundColor: colors.black },
-  shadow: { tintColor: colors.black },
+  container: { backgroundColor: colors.black.primary },
+  shadow: { tintColor: colors.black.primary },
 })
 
 const pink = StyleSheet.create({
-  container: { backgroundColor: colors.pink },
-  shadow: { tintColor: colors.pink },
+  container: { backgroundColor: colors.pink.primary },
+  shadow: { tintColor: colors.pink.primary },
 })
 
 const white = StyleSheet.create({
-  container: { backgroundColor: colors.white },
-  shadow: { tintColor: colors.white },
+  container: { backgroundColor: colors.white.primary },
+  shadow: { tintColor: colors.white.primary },
 })
 
 const blue = StyleSheet.create({
-  container: { backgroundColor: colors.blue },
-  shadow: { tintColor: colors.blue },
+  container: { backgroundColor: colors.blue.primary },
+  shadow: { tintColor: colors.blue.primary },
 })
 
 export type ThemeTypes = 'container' | 'shadow'
@@ -64,13 +58,13 @@ function statusBar(theme: Theme) {
 function refreshControl(theme: Theme) {
   switch (theme) {
     case 'black':
-      return colors.white
+      return colors.white.primary
     case 'white':
-      return colors.black
+      return colors.black.primary
     case 'pink':
-      return colors.white
+      return colors.white.primary
     case 'blue':
-      return colors.white
+      return colors.white.primary
   }
 }
 
