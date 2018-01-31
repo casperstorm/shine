@@ -1,7 +1,5 @@
 import { StyleSheet } from 'react-native'
 
-import theme from '../../theme'
-
 export default StyleSheet.create({
   container: {
     marginLeft: 16,
@@ -16,15 +14,17 @@ export default StyleSheet.create({
   },
 
   title: {
-    ...theme.text.contentHeader,
+    fontFamily: 'Rubik-Bold',
+    fontSize: 30,
     marginLeft: 12,
     marginRight: 12,
     textAlign: 'left',
     lineHeight: 38,
   },
 
-  description: {
-    ...theme.text.contentDescription,
+  subtitle: {
+    fontFamily: 'Rubik-Light',
+    fontSize: 15,
     marginLeft: 12,
     marginRight: 12,
     marginBottom: 25,
@@ -34,8 +34,6 @@ export default StyleSheet.create({
   separator: {
     position: 'absolute',
     borderTopWidth: 0.5,
-    borderTopColor: theme.color.base1,
-    opacity: 0.8,
     left: 12,
     right: 12,
     bottom: 0,

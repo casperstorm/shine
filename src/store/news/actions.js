@@ -1,7 +1,5 @@
 /* @flow */
-import Config from 'react-native-config'
-
-import type { ThunkAction } from '../types'
+import type { ThunkAction, State, Dispatch } from '../types'
 import { Greetings } from '../../utils/greetings'
 
 export const actionTypes = {
@@ -27,12 +25,22 @@ export type ActionNewsDate = {
 
 export type Action = ActionNewsGreetings | ActionNewsDate | ActionNewsFetch
 
-export const itemsFetch = (): ThunkAction => (dispatch, getState) =>
-  fetch(Config.API_URL)
+const endpoint = (state: State) => {
+  const base = state.news.url
+  const token = state.config.tokens.news
+  return base + '?auth_token=' + token
+}
+
+export const itemsFetch = (): ThunkAction => (dispatch: Dispatch, getState: Function) => {
+  return fetch(endpoint(getState()))
     .then(response => response.json())
-    .then(json => {
-      dispatch({ type: actionTypes.NEWS_FETCH, value: json.results })
+    .then(json => dispatch({ type: actionTypes.NEWS_FETCH, value: json.results }))
+    .then(() => dispatch(refreshDate(new Date())))
+    .catch(() => {
+      /* API only allows to fetch every 2 seconds.
+     We could add some better error handling than now. */
     })
+}
 
 export const refreshDate = (date: Date): ActionNewsDate => ({
   type: actionTypes.NEWS_DATE,

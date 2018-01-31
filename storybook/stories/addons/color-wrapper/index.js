@@ -2,16 +2,19 @@
 import React from 'react'
 import { View } from 'react-native'
 
+import type { Theme } from '../../../../src/types'
 import styles from './styles'
 
 export type Props = {
-  type: 'black' | 'white',
+  theme: Theme,
   children: any,
 }
 export class ColorWrapper extends React.Component<Props> {
   render() {
     return (
-      <View style={[styles.main, styles[this.props.type]]}>{this.props.children}</View>
+      <View style={[styles.container, styles[this.props.theme]]}>
+        {this.props.children}
+      </View>
     )
   }
 }

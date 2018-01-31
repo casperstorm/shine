@@ -3,12 +3,14 @@ import { actionTypes } from './actions'
 import type { Action } from '../types'
 
 export const initialState = {
+  url: 'https://cryptopanic.com/api/posts/',
   items: [],
   date: null,
   greetings: [],
 }
 
 export type State = {
+  url: string,
   items: Array<Object>,
   date: ?Date,
   greetings: Array<String>,

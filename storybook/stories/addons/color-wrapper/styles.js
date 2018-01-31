@@ -1,13 +1,25 @@
+const color = {
+  white: 'rgba(255, 255, 255, 1)',
+  black: 'rgba(0, 0, 0, 1)',
+  pink: 'rgba(253, 62, 129, 1)',
+}
+
 export default {
-  main: {
-    flex: 1,
+  container: {
+    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   black: {
-    backgroundColor: 'black',
+    backgroundColor: color.black,
   },
 
   white: {
-    backgroundColor: 'white',
+    backgroundColor: color.white,
+  },
+
+  pink: {
+    backgroundColor: color.pink,
   },
 }
