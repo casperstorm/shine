@@ -12,6 +12,7 @@ import Asset from '../../components/asset'
 import * as animationDefinitions from './animations'
 
 import { setTheme, setNewsToken } from '../../store/config/actions'
+import { itemsFetch } from '../../store/news/actions'
 import * as selectors from '../../store/selectors'
 
 import type { ThemeTypes } from './styles.themes'
@@ -27,7 +28,7 @@ type OwnProps = {
 type ReduxProps = {
   dispatch: Dispatch,
   theme: Theme,
-  token: string,
+  token: string | null,
 }
 
 type Props = OwnProps & ReduxProps
@@ -164,6 +165,7 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
                 token = this.state.token
               }
               this.props.dispatch(setNewsToken(token))
+              this.props.dispatch(itemsFetch())
               this.props.navigator.dismissModal()
             }}
           />

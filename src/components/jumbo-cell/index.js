@@ -33,7 +33,7 @@ class JumboCell extends React.Component<Props> {
           <Text numberOfLines={2} style={[styles.title, this.themeStyle('title')]}>
             {this.props.title}
           </Text>
-          <Text numberOfLines={1} style={[styles.subtitle, this.themeStyle('subtitle')]}>
+          <Text numberOfLines={0} style={[styles.subtitle, this.themeStyle('subtitle')]}>
             {this.props.subtitle}
           </Text>
           <View style={[styles.separator, this.themeStyle('separator')]} />

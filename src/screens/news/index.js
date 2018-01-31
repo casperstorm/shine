@@ -19,7 +19,7 @@ import Asset from '../../components/asset'
 import FadeView from '../../components/fade-view'
 
 import * as selectors from '../../store/selectors'
-import { itemsFetch, refreshDate, greetings } from '../../store/news/actions'
+import { itemsFetch, greetings } from '../../store/news/actions'
 
 import styles, { navigatorStyle } from './styles'
 import type { ThemeTypes } from './styles.themes'
@@ -34,6 +34,7 @@ type Props = {
   greeting?: string,
   date?: Date,
   theme: Theme,
+  token: string | null,
 }
 
 type ComponentState = {
@@ -101,10 +102,12 @@ class NewsScreen extends React.Component<Props, ComponentState> {
   }
 
   refreshData = () => {
-    this.props
-      .dispatch(itemsFetch())
-      .then(() => this.props.dispatch(refreshDate(new Date())))
-      .then(() => this.setState({ isRefreshing: false, hasContent: true }))
+    this.props.dispatch(itemsFetch()).then(() =>
+      this.setState({
+        isRefreshing: false,
+        hasContent: true,
+      })
+    )
 
     setInterval(() => {
       moment.updateLocale('en', {
@@ -141,11 +144,16 @@ class NewsScreen extends React.Component<Props, ComponentState> {
   }
 
   renderJumboCell = ({ item }) => {
+    const hasToken = this.props.token
+    const title = hasToken ? item.title : '👆🏻'
+    const subtitle = hasToken
+      ? item.description
+      : 'In order for Shine to fetch news we need a token. Press the above settings button to get started.'
     return (
       <JumboCell
         theme={this.props.theme}
-        title={item.title}
-        subtitle={item.description}
+        title={title}
+        subtitle={subtitle}
         onLogoPress={() => {
           this.props.navigator.showModal({ screen: 'Shine.Settings' })
         }}
@@ -187,7 +195,11 @@ class NewsScreen extends React.Component<Props, ComponentState> {
         animationDuration={700}
         style={styles.activityIndicator}
       >
-        <ActivityIndicator animating={true} size="large" />
+        <ActivityIndicator
+          animating={true}
+          size="large"
+          color={themes.refreshControl(this.props.theme)}
+        />
       </View>
     </View>
   )
@@ -214,7 +226,6 @@ class NewsScreen extends React.Component<Props, ComponentState> {
   )
 
   render() {
-    console.log(`theme: ${this.props.theme}`)
     return (
       <View style={[styles.container, this.themeStyle('container')]}>
         {!this.state.hasShownIntro && this.renderIntro()}
@@ -232,6 +243,7 @@ const mapStateToProps = (state: State) => ({
   greeting: selectors.selectRandomGreetings(state),
   date: selectors.newsUpdatedDate(state),
   theme: selectors.currentTheme(state),
+  token: selectors.currentNewsToken(state),
 })
 
 export default connect(mapStateToProps)(NewsScreen)

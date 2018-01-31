@@ -35,6 +35,7 @@ export const itemsFetch = (): ThunkAction => (dispatch: Dispatch, getState: Func
   return fetch(endpoint(getState()))
     .then(response => response.json())
     .then(json => dispatch({ type: actionTypes.NEWS_FETCH, value: json.results }))
+    .then(() => dispatch(refreshDate(new Date())))
     .catch(() => {
       /* API only allows to fetch every 2 seconds.
      We could add some better error handling than now. */
