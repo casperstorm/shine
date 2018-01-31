@@ -5,21 +5,6 @@
 <img src="./assets/marketing/marketing.png" width="80%">
 
 Shine is a app cryptocurrency news aggregator for iOS and Android.
-Currently based upon the API from [CryptoPanic](https://cryptopanic.com/).
-
-## Prerequisite
-Before using Shine, you need to aquire an [API token from CryptoPanic](https://cryptopanic.com/about/api/), in order to fetch the data.
-Once this has been aquirred, you can create the needed environment file: 
-
-```
-touch src/config/.env.production
-```
-
-Inside `.env.production`, add the following:
-
-```
-API_URL=https://cryptopanic.com/api/posts/?auth_token={API_TOKEN}
-```
 
 ## Running
 ```
