@@ -3,47 +3,23 @@ import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
 import { colors } from '../../utils/colors'
 
-const black = StyleSheet.create({
-  title: { color: colors.white.primary },
-  subtitle: { color: colors.white.primary },
-  separator: { borderColor: colors.black.secondary },
-  logo: { tintColor: colors.black.secondary },
-})
+const utilColors = {
+  black: { logo: 'rgba(120, 123, 120, 1.0)' },
+  white: { logo: 'rgba(210, 211, 210, 1.0)' },
+  pink: { logo: 'rgba(186, 0, 72, 1.0)' },
+  blue: { logo: 'rgba(18, 0, 184, 1.0)' },
+}
 
-const white = StyleSheet.create({
-  title: { color: colors.black.primary },
-  subtitle: { color: colors.black.primary },
-  separator: { borderColor: colors.white.secondary },
-  logo: { tintColor: colors.white.secondary },
-})
-
-const pink = StyleSheet.create({
-  title: { color: colors.white.primary },
-  subtitle: { color: colors.white.primary },
-  separator: { borderColor: colors.pink.secondary },
-  logo: { tintColor: colors.pink.secondary },
-})
-
-const blue = StyleSheet.create({
-  title: { color: colors.white.primary },
-  subtitle: { color: colors.white.primary },
-  separator: { borderColor: colors.blue.secondary },
-  logo: { tintColor: colors.blue.secondary },
-})
+const styles = (theme: Theme) =>
+  StyleSheet.create({
+    title: { color: colors[theme].text },
+    subtitle: { color: colors[theme].text },
+    separator: { borderColor: colors[theme].separator },
+    logo: { tintColor: utilColors[theme].logo },
+  })
 
 export type ThemeTypes = 'title' | 'subtitle' | 'separator' | 'logo'
-function style(theme: Theme, type: ThemeTypes) {
-  switch (theme) {
-    case 'black':
-      return black[type]
-    case 'white':
-      return white[type]
-    case 'pink':
-      return pink[type]
-    case 'blue':
-      return blue[type]
-  }
-}
+const style = (theme: Theme, type: ThemeTypes) => styles(theme)[type]
 
 export default {
   style,

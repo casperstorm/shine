@@ -3,43 +3,34 @@ import { StyleSheet } from 'react-native'
 import type { Theme } from '../../types'
 import { colors } from '../../utils/colors'
 
-const black = StyleSheet.create({
-  container: { backgroundColor: colors.black.secondary },
-  title: { color: colors.white.primary },
-  icon: { tintColor: colors.white.primary },
-})
+const utilColors = {
+  white: {
+    container: 'rgba(246, 247, 246, 1.0)',
+    icon: 'rgba(0, 0, 0, 1.0)',
+  },
+  black: {
+    container: 'rgba(37, 37, 37, 1.0)',
+    icon: 'rgba(255, 255, 255, 1.0)',
+  },
+  pink: {
+    container: 'rgba(186, 0, 72, 1.0)',
+    icon: 'rgba(255, 255, 255, 1.0)',
+  },
+  blue: {
+    container: 'rgba(12, 0, 126, 1.0)',
+    icon: 'rgba(255, 255, 255, 1.0)',
+  },
+}
 
-const white = StyleSheet.create({
-  container: { backgroundColor: colors.white.secondary },
-  title: { color: colors.black.primary },
-  icon: { tintColor: colors.black.primary },
-})
-
-const pink = StyleSheet.create({
-  container: { backgroundColor: colors.pink.secondary },
-  title: { color: colors.white.primary },
-  icon: { tintColor: colors.white.primary },
-})
-
-const blue = StyleSheet.create({
-  container: { backgroundColor: colors.blue.secondary },
-  title: { color: colors.white.primary },
-  icon: { tintColor: colors.white.primary },
-})
+const styles = (theme: Theme) =>
+  StyleSheet.create({
+    title: { color: colors[theme].text },
+    container: { backgroundColor: utilColors[theme].container },
+    icon: { tintColor: utilColors[theme].icon },
+  })
 
 export type ThemeTypes = 'container' | 'title' | 'icon'
-function style(theme: Theme, type: ThemeTypes) {
-  switch (theme) {
-    case 'black':
-      return black[type]
-    case 'white':
-      return white[type]
-    case 'pink':
-      return pink[type]
-    case 'blue':
-      return blue[type]
-  }
-}
+const style = (theme: Theme, type: ThemeTypes) => styles(theme)[type]
 
 export default {
   style,
