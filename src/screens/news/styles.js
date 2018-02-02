@@ -1,5 +1,6 @@
 /* @flow */
-import { StyleSheet } from 'react-native'
+import { Dimensions, StyleSheet } from 'react-native'
+const { height, width } = Dimensions.get('window')
 
 export const navigatorStyle = {
   navBarHidden: true,
@@ -7,7 +8,8 @@ export const navigatorStyle = {
 
 export default StyleSheet.create({
   container: {
-    flex: 1,
+    width: width,
+    height: height,
   },
 
   content: {

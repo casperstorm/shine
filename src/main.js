@@ -1,7 +1,9 @@
 import { Navigation } from 'react-native-navigation'
 import { Provider } from 'react-redux'
 
+import RootScreen from './screens/root'
 import NewsScreen from './screens/news'
+import CoinsScreen from './screens/coins'
 import SettingsScreen from './screens/settings'
 import configureStore from './store/configure-store'
 
@@ -15,7 +17,9 @@ class Main {
 
   registerScreens(store, provider) {
     /* eslint-disable prettier/prettier */
+    Navigation.registerComponent('Shine.Root', () => RootScreen, store, provider)
     Navigation.registerComponent('Shine.News', () => NewsScreen, store, provider)
+    Navigation.registerComponent('Shine.Coins', () => CoinsScreen, store, provider)
     Navigation.registerComponent('Shine.Settings', () => SettingsScreen, store, provider)
     /* eslint-enable prettier/prettier */
   }
@@ -23,7 +27,8 @@ class Main {
   start() {
     Navigation.startSingleScreenApp({
       screen: {
-        screen: 'Shine.News',
+        screen: 'Shine.Root',
+        // screen: 'Shine.News',
       },
     })
   }
