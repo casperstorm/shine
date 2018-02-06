@@ -25,6 +25,13 @@ export const selectRandomGreetings = createSelector(
 export const newsUpdatedDate = createSelector(items, date, (_, date) => date)
 
 // ================
+// Coins
+// ================
+
+const coins = (state: State) => state.coins
+export const sortedCoins = createSelector(coins, coins => coins.items)
+
+// ================
 // Config
 // ================
 

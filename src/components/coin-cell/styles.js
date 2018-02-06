@@ -2,16 +2,30 @@ import { StyleSheet } from 'react-native'
 
 export default StyleSheet.create({
   container: {
-    margin: 12,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     backgroundColor: 'transparent',
   },
 
-  title: {
-    fontFamily: 'Rubik-Regular',
+  symbol: {
+    fontFamily: 'Rubik-Bold',
     fontSize: 17,
-    lineHeight: 22.0,
-    margin: 12,
-    marginBottom: 16,
+  },
+
+  price: {
+    fontFamily: 'Rubik-Regular',
+    fontSize: 14,
+  },
+
+  change: {
+    textAlign: 'right',
+    fontFamily: 'Rubik-Regular',
+    fontSize: 14,
+  },
+
+  row: {
+    margin: 24,
   },
 
   separator: {

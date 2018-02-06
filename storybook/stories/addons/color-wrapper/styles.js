@@ -1,8 +1,4 @@
-const color = {
-  white: 'rgba(255, 255, 255, 1)',
-  black: 'rgba(0, 0, 0, 1)',
-  pink: 'rgba(253, 62, 129, 1)',
-}
+import { colors } from '../../../../src/utils/colors'
 
 export default {
   container: {
@@ -12,14 +8,18 @@ export default {
   },
 
   black: {
-    backgroundColor: color.black,
+    backgroundColor: colors.black.primary,
   },
 
   white: {
-    backgroundColor: color.white,
+    backgroundColor: colors.white.primary,
   },
 
   pink: {
-    backgroundColor: color.pink,
+    backgroundColor: colors.pink.primary,
+  },
+
+  blue: {
+    backgroundColor: colors.blue.primary,
   },
 }

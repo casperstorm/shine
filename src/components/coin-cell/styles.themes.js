@@ -5,11 +5,11 @@ import { colors } from '../../utils/colors'
 
 const styles = (theme: Theme) =>
   StyleSheet.create({
-    title: { color: colors[theme].text },
+    text: { color: colors[theme].text },
     separator: { borderColor: colors[theme].separator },
   })
 
-export type ThemeTypes = 'title' | 'separator'
+export type ThemeTypes = 'text' | 'separator'
 const style = (theme: Theme, type: ThemeTypes) => styles(theme)[type]
 
 export default {

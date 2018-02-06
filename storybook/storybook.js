@@ -10,6 +10,7 @@ configure(() => {
   require('./stories/components/token-cell.stories')
   require('./stories/components/theme-cell.stories')
   require('./stories/components/intro-view.stories')
+  require('./stories/components/coin-cell.stories')
   require('./stories/screens/settings.stories')
 }, module)
 

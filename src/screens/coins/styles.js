@@ -11,4 +11,16 @@ export default StyleSheet.create({
     width: width,
     height: height,
   },
+
+  list: {
+    marginTop: 16,
+  },
+
+  shadowContainer: {
+    position: 'absolute',
+    width: '100%',
+    alignItems: 'center',
+    bottom: 0,
+    zIndex: 999,
+  },
 })
