@@ -14,7 +14,7 @@ lane :itunes_connect do |options|
   dry = options[:dry] || false
   path = ENV["IOS_PROJECT"],
   match(
-    type: "appstore"
+    type: "appstore",
     git_url: "ENV["CERTIFICATES_REPO_URL"]"
   )
   if !dry
