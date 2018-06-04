@@ -11,7 +11,7 @@ import type { State } from './types'
 const items = (state: State) => state.news.items
 
 export const sortedNewsItems = createSelector(items, items =>
-  _.sortBy(items, item => item.published_at).reverse()
+  _.sortBy(items, item => item.publishedAt).reverse()
 )
 
 // ================
