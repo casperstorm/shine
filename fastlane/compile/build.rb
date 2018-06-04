@@ -15,19 +15,19 @@ lane :itunes_connect do |options|
   path = ENV["IOS_PROJECT"],
   match(
     type: "appstore",
-    git_url: "ENV["CERTIFICATES_REPO_URL"]"
+    git_url: ENV["CERTIFICATES_REPO_URL"],
   )
   if !dry
     increment_build
   end
-  disable_automatic_code_signing(path: path)
+  disable_automatic_code_signing(path: ENV["IOS_PROJECT"])
   gym(
-    project: path,
+    project: ENV["IOS_PROJECT"],
     scheme: ENV["IOS_SCHEME"],
     configuration: ENV["IOS_CONFIGURATION_RELEASE"],
     export_method: "app-store",
   )
-  # itunes_connect
+  itunes_connect
 end
 
 desc "Deploy a new version to Google Play"
