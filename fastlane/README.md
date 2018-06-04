@@ -15,17 +15,26 @@ Install _fastlane_ using
 or alternatively using `brew cask install fastlane`
 
 # Available Actions
-## iOS
-### ios codesigning
+### increment_build
 ```
-fastlane ios codesigning
+fastlane increment_build
 ```
-Fetch all production/staging certificates and provisioning profiles
-### ios beta
+Increment both projects
+### itunes_connect
 ```
-fastlane ios beta
+fastlane itunes_connect
 ```
-Submit a new Beta Build to Apple TestFlight
+Deploy a new version to iTunes Connect
+### play_store
+```
+fastlane play_store
+```
+Deploy a new version to Google Play
+### codesigning
+```
+fastlane codesigning
+```
+Fetch all certificates and provisioning profiles
 
 ----
 

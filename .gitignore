@@ -56,3 +56,6 @@ coverage/
 # Environment
 
 /src/config/.env.production
+/fastlane/.env
+/.bundle
+/vendor
