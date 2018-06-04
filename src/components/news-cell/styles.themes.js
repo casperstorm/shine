@@ -11,7 +11,7 @@ const styles = (theme: Theme) =>
     separator: { borderColor: colors[theme].separator },
   })
 
-export type ThemeTypes = 'title' | 'subtitle' | 'separator'
+export type ThemeTypes = 'title' | 'subtitle' | 'separator' | 'date'
 const style = (theme: Theme, type: ThemeTypes) => styles(theme)[type]
 
 export default {

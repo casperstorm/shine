@@ -16,7 +16,7 @@ export default StyleSheet.create({
   },
 
   subtitle: {
-    fontFamily: 'Rubik-Light',
+    fontFamily: 'Rubik-Regular',
     fontSize: 14,
     marginRight: 12,
     marginLeft: 12,
