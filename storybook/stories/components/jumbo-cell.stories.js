@@ -8,13 +8,7 @@ import JumboCell from '../../../src/components/jumbo-cell'
 import ColorWrapper from '../addons/color-wrapper'
 
 function cell(theme: Theme) {
-  return (
-    <JumboCell
-      theme={theme}
-      title={'Phasellus dolor nunc, faucibus 🤔'}
-      description={'updated 5min ago'}
-    />
-  )
+  return <JumboCell theme={theme} />
 }
 
 storiesOf('jumbo-cell', module).add('default', () => (

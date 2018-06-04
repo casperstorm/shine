@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react'
+import SafariView from 'react-native-safari-view'
 import { connect } from 'react-redux'
 import {
   View,
@@ -7,6 +8,7 @@ import {
   Linking,
   ActivityIndicator,
   RefreshControl,
+  Platform,
 } from 'react-native'
 import moment from 'moment'
 
@@ -19,11 +21,13 @@ import Asset from '../../components/asset'
 import FadeView from '../../components/fade-view'
 
 import * as selectors from '../../store/selectors'
-import { itemsFetch, greetings } from '../../store/news/actions'
+import { itemsFetch } from '../../store/news/actions'
 
 import styles, { navigatorStyle } from './styles'
 import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
+
+// var SafariView = require('react-native-safari-view')
 
 type Props = {
   navigator: Navigator,
@@ -31,40 +35,24 @@ type Props = {
   // Redux
   dispatch: Dispatch,
   items: Array<Object>,
-  greeting?: string,
-  date?: Date,
   theme: Theme,
-  token: string | null,
 }
 
 type ComponentState = {
   hasContent: boolean,
   hasShownIntro: boolean,
   isRefreshing: boolean,
-  lastRefreshedDate: ?string,
 }
 
 const relativeTimes = {
-  short: {
-    past: '%s',
-    s: '< 1 m',
-    m: '1 m',
-    mm: '%d m',
-    h: '1 h',
-    hh: '%d h',
-    d: '1 d',
-    dd: '%d d',
-  },
-  medium: {
-    past: '%s ago',
-    s: 'a few seconds',
-    m: 'a minute',
-    mm: '%d minutes',
-    h: 'an hour',
-    hh: '%d hours',
-    d: 'a day',
-    dd: 'only %d days',
-  },
+  past: '%s',
+  s: '< 1 m',
+  m: '1 m',
+  mm: '%d m',
+  h: '1 h',
+  hh: '%d h',
+  d: '1 d',
+  dd: '%d d',
 }
 
 class NewsScreen extends React.Component<Props, ComponentState> {
@@ -74,13 +62,11 @@ class NewsScreen extends React.Component<Props, ComponentState> {
     hasContent: false,
     hasShownIntro: false,
     isRefreshing: false,
-    lastRefreshedDate: null,
   }
 
   themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
 
   componentDidMount = () => {
-    this.props.dispatch(greetings())
     this.refreshData()
   }
 
@@ -108,28 +94,12 @@ class NewsScreen extends React.Component<Props, ComponentState> {
         hasContent: true,
       })
     )
-
-    setInterval(() => {
-      moment.updateLocale('en', {
-        relativeTime: relativeTimes.medium,
-      })
-
-      this.setState({ lastRefreshedDate: moment(this.props.date).fromNow() })
-    }, 1000)
   }
 
   sections = () => {
     return [
       {
-        data: [
-          {
-            key: 'jumbo',
-            title: this.props.greeting,
-            description: this.state.lastRefreshedDate
-              ? `Updated ${this.state.lastRefreshedDate}`
-              : null,
-          },
-        ],
+        data: [{ key: 'jumbo' }],
         renderItem: this.renderJumboCell,
       },
       {
@@ -140,20 +110,13 @@ class NewsScreen extends React.Component<Props, ComponentState> {
   }
 
   keyExtractor = item => {
-    return item.key || item.id
+    return item.key || item.publishedAt
   }
 
   renderJumboCell = ({ item }) => {
-    const hasToken = this.props.token
-    const title = hasToken ? item.title : '👆🏻'
-    const subtitle = hasToken
-      ? item.description
-      : 'In order for Shine to fetch news we need a token. Press the above settings button to get started.'
     return (
       <JumboCell
         theme={this.props.theme}
-        title={title}
-        subtitle={subtitle}
         onLogoPress={() => {
           this.props.navigator.showModal({ screen: 'Shine.Settings' })
         }}
@@ -163,18 +126,26 @@ class NewsScreen extends React.Component<Props, ComponentState> {
 
   renderNewsCell = ({ item }) => {
     moment.updateLocale('en', {
-      relativeTime: relativeTimes.short,
+      relativeTime: relativeTimes,
     })
 
     return (
       <NewsCell
         theme={this.props.theme}
         title={item.title}
-        currencies={item.currencies}
-        votes={item.votes}
-        published={moment(item.published_at).fromNow(true)}
+        subtitle={item.description}
+        published={moment(item.publishedAt).fromNow(true)}
         onPress={() => {
-          Linking.openURL(item.url)
+          switch (Platform.OS) {
+            case 'ios':
+              SafariView.show({ url: item.url })
+              break
+            case 'android':
+              Linking.openURL(item.url)
+              break
+            default:
+              break
+          }
         }}
       />
     )
@@ -240,10 +211,7 @@ class NewsScreen extends React.Component<Props, ComponentState> {
 
 const mapStateToProps = (state: State) => ({
   items: selectors.sortedNewsItems(state),
-  greeting: selectors.selectRandomGreetings(state),
-  date: selectors.newsUpdatedDate(state),
   theme: selectors.currentTheme(state),
-  token: selectors.currentNewsToken(state),
 })
 
 export default connect(mapStateToProps)(NewsScreen)

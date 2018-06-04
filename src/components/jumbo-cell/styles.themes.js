@@ -12,13 +12,11 @@ const utilColors = {
 
 const styles = (theme: Theme) =>
   StyleSheet.create({
-    title: { color: colors[theme].text },
-    subtitle: { color: colors[theme].text },
     separator: { borderColor: colors[theme].separator },
     logo: { tintColor: utilColors[theme].logo },
   })
 
-export type ThemeTypes = 'title' | 'subtitle' | 'separator' | 'logo'
+export type ThemeTypes = 'separator' | 'logo'
 const style = (theme: Theme, type: ThemeTypes) => styles(theme)[type]
 
 export default {
