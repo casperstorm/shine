@@ -1,17 +1,16 @@
 /* @flow */
 import React from 'react'
 import { connect } from 'react-redux'
-import { View, SectionList, Linking } from 'react-native'
+import { View, SectionList } from 'react-native'
 import * as Animatable from 'react-native-animatable'
 
 import type { Theme, Navigator } from '../../types'
 import type { Dispatch, State } from '../../store/types'
 import ThemeCell from '../../components/theme-cell'
-import TokenCell from '../../components/token-cell'
 import Asset from '../../components/asset'
 import * as animationDefinitions from './animations'
 
-import { setTheme, setNewsToken } from '../../store/config/actions'
+import { setTheme } from '../../store/config/actions'
 import { itemsFetch } from '../../store/news/actions'
 import * as selectors from '../../store/selectors'
 
@@ -28,14 +27,12 @@ type OwnProps = {
 type ReduxProps = {
   dispatch: Dispatch,
   theme: Theme,
-  token: string | null,
 }
 
 type Props = OwnProps & ReduxProps
 
 type ComponentState = {
   animating: boolean,
-  token: string | null,
 }
 
 export class SettingsScreen extends React.Component<Props, ComponentState> {
@@ -48,13 +45,11 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
   state = {
     animating: false,
-    token: null,
   }
 
   themeStyle = (type: ThemeTypes) => themes.style(this.props.theme, type)
 
   componentDidMount = () => {
-    this.setState({ token: this.props.token })
     this.statusBarTheme(this.props.theme)
   }
 
@@ -113,28 +108,11 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
         data: [{ key: 'theme' }],
         renderItem: this.renderThemeCell,
       },
-      {
-        data: [{ key: 'api' }],
-        renderItem: this.renderAPICell,
-      },
     ]
   }
 
   keyExtractor = (item: Object) => {
     return item.key
-  }
-
-  renderAPICell = ({ item }: Object) => {
-    return (
-      <TokenCell
-        theme={this.props.theme}
-        value={this.state.token}
-        onPress={() => {
-          Linking.openURL('https://cryptopanic.com/about/api/')
-        }}
-        onTextInputChange={text => this.setState({ token: text })}
-      />
-    )
   }
 
   renderThemeCell = ({ item }: Object) => (
@@ -160,11 +138,6 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
           <Asset.Button.CrossDark
             iconStyle={this.themeStyle('close')}
             onPress={() => {
-              var token = null
-              if (this.state.token && this.state.token.length > 0) {
-                token = this.state.token
-              }
-              this.props.dispatch(setNewsToken(token))
               this.props.dispatch(itemsFetch())
               this.props.navigator.dismissModal()
             }}
@@ -182,7 +155,6 @@ export class SettingsScreen extends React.Component<Props, ComponentState> {
 
 const mapStateToProps = (state: State) => ({
   theme: selectors.currentTheme(state),
-  token: selectors.currentNewsToken(state),
 })
 
 export default connect(mapStateToProps)(SettingsScreen)

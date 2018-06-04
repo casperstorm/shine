@@ -4,18 +4,12 @@ import type { Action } from '../types'
 import type { Theme } from '../../types'
 
 export type State = {
-  tokens: {
-    news: ?string,
-  },
   theme: {
     current: Theme,
   },
 }
 
 export const initialState = {
-  tokens: {
-    news: null,
-  },
   theme: {
     current: 'white',
   },
@@ -23,14 +17,6 @@ export const initialState = {
 
 const config = (state: State = initialState, action: Action) => {
   switch (action.type) {
-    case actionTypes.CONFIG_SET_NEWS_TOKEN:
-      return {
-        ...state,
-        tokens: {
-          news: action.value,
-        },
-      }
-
     case actionTypes.CONFIG_SET_THEME:
       return {
         ...state,
