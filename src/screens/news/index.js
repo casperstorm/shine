@@ -1,5 +1,6 @@
 /* @flow */
 import React from 'react'
+import SafariView from 'react-native-safari-view'
 import { connect } from 'react-redux'
 import {
   View,
@@ -7,6 +8,7 @@ import {
   Linking,
   ActivityIndicator,
   RefreshControl,
+  Platform,
 } from 'react-native'
 import moment from 'moment'
 
@@ -25,6 +27,8 @@ import styles, { navigatorStyle } from './styles'
 import type { ThemeTypes } from './styles.themes'
 import themes from './styles.themes'
 
+// var SafariView = require('react-native-safari-view')
+
 type Props = {
   navigator: Navigator,
 
@@ -41,26 +45,14 @@ type ComponentState = {
 }
 
 const relativeTimes = {
-  short: {
-    past: '%s',
-    s: '< 1 m',
-    m: '1 m',
-    mm: '%d m',
-    h: '1 h',
-    hh: '%d h',
-    d: '1 d',
-    dd: '%d d',
-  },
-  medium: {
-    past: '%s ago',
-    s: 'a few seconds',
-    m: 'a minute',
-    mm: '%d minutes',
-    h: 'an hour',
-    hh: '%d hours',
-    d: 'a day',
-    dd: 'only %d days',
-  },
+  past: '%s',
+  s: '< 1 m',
+  m: '1 m',
+  mm: '%d m',
+  h: '1 h',
+  hh: '%d h',
+  d: '1 d',
+  dd: '%d d',
 }
 
 class NewsScreen extends React.Component<Props, ComponentState> {
@@ -134,7 +126,7 @@ class NewsScreen extends React.Component<Props, ComponentState> {
 
   renderNewsCell = ({ item }) => {
     moment.updateLocale('en', {
-      relativeTime: relativeTimes.short,
+      relativeTime: relativeTimes,
     })
 
     return (
@@ -144,7 +136,16 @@ class NewsScreen extends React.Component<Props, ComponentState> {
         subtitle={item.description}
         published={moment(item.publishedAt).fromNow(true)}
         onPress={() => {
-          Linking.openURL(item.url)
+          switch (Platform.OS) {
+            case 'ios':
+              SafariView.show({ url: item.url })
+              break
+            case 'android':
+              Linking.openURL(item.url)
+              break
+            default:
+              break
+          }
         }}
       />
     )
