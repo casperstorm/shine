@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="fastlane.lanes">
+    
+    
+    
+      
+      <testcase classname="fastlane.lanes" name="0: opt_out_usage" time="0.03032">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="1: Verifying fastlane version" time="0.007768">
+        
+      </testcase>
+    
+      
+      <testcase classname="fastlane.lanes" name="2: match" time="6.823749">
+        
+      </testcase>
+    
+  </testsuite>
+</testsuites>
