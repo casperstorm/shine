@@ -13,13 +13,6 @@ function cell(theme: Theme) {
     <NewsCell
       theme={theme}
       title={'Phasellus dolor nunc, faucibus eget accumsan ac, mollis sit amet lorem.'}
-      currencies={[
-        { code: 'BTC', title: 'BTC' },
-        { code: 'VTC', title: 'VTC' },
-        { code: 'GRS', title: 'GRS' },
-        { code: 'SYS', title: 'SYS' },
-      ]}
-      votes={{ important: 1, negative: 2, positive: 3 }}
       published={'2m'}
       onPress={action('onPress')}
     />

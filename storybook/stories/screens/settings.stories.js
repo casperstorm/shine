@@ -10,7 +10,6 @@ const initialProps = {
   navigator: initialNavigatorProps,
   randomTheme: 'pink',
   theme: 'white',
-  token: '123',
   dispatch: action('changeTheme'),
 }
 

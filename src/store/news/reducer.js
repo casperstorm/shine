@@ -1,9 +1,11 @@
 /* @flow */
+import Config from 'react-native-config'
+
 import { actionTypes } from './actions'
 import type { Action } from '../types'
 
 export const initialState = {
-  url: 'https://cryptopanic.com/api/posts/',
+  url: Config.API_URL,
   items: [],
   date: null,
   greetings: [],

@@ -26,15 +26,13 @@ export type ActionNewsDate = {
 export type Action = ActionNewsGreetings | ActionNewsDate | ActionNewsFetch
 
 const endpoint = (state: State) => {
-  const base = state.news.url
-  const token = state.config.tokens.news
-  return base + '?auth_token=' + token
+  return state.news.url
 }
 
 export const itemsFetch = (): ThunkAction => (dispatch: Dispatch, getState: Function) => {
   return fetch(endpoint(getState()))
     .then(response => response.json())
-    .then(json => dispatch({ type: actionTypes.NEWS_FETCH, value: json.results }))
+    .then(json => dispatch({ type: actionTypes.NEWS_FETCH, value: json.articles }))
     .then(() => dispatch(refreshDate(new Date())))
     .catch(() => {
       /* API only allows to fetch every 2 seconds.
