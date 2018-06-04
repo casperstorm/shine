@@ -11,6 +11,7 @@ import themes from './styles.themes'
 export type Props = {
   theme: Theme,
   title: string,
+  subtitle: string,
   published: string,
   onPress: Function,
 }
@@ -27,8 +28,11 @@ class NewsCell extends React.Component<Props> {
           <Text style={[styles.title, this.themeStyle('title')]}>
             {[this.props.title]}
           </Text>
+          <Text style={[styles.subtitle, this.themeStyle('subtitle')]}>
+            {[this.props.subtitle]}
+          </Text>
           <View style={styles.information}>
-            <Text style={[styles.subtitle, this.themeStyle('subtitle')]}>
+            <Text style={[styles.date, this.themeStyle('date')]}>
               {this.props.published}
             </Text>
           </View>

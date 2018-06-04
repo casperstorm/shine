@@ -2,6 +2,7 @@ const color = {
   white: 'rgba(255, 255, 255, 1)',
   black: 'rgba(0, 0, 0, 1)',
   pink: 'rgba(253, 62, 129, 1)',
+  blue: 'rgba(25, 0, 255, 1.0)',
 }
 
 export default {
@@ -21,5 +22,9 @@ export default {
 
   pink: {
     backgroundColor: color.pink,
+  },
+
+  blue: {
+    backgroundColor: color.blue,
   },
 }

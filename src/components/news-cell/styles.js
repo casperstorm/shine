@@ -7,23 +7,26 @@ export default StyleSheet.create({
   },
 
   title: {
-    fontFamily: 'Rubik-Regular',
+    fontFamily: 'Rubik-Bold',
     fontSize: 17,
     lineHeight: 22.0,
     margin: 12,
+    marginTop: 0,
     marginBottom: 16,
   },
 
   subtitle: {
     fontFamily: 'Rubik-Light',
-    fontSize: 13,
+    fontSize: 14,
     marginRight: 12,
     marginLeft: 12,
     marginBottom: 12,
   },
 
-  tags: {
-    flexDirection: 'row',
+  date: {
+    fontFamily: 'Rubik-Light',
+    fontSize: 13,
+    marginRight: 12,
     marginLeft: 12,
     marginBottom: 12,
   },

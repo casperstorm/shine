@@ -170,8 +170,7 @@ class NewsScreen extends React.Component<Props, ComponentState> {
       <NewsCell
         theme={this.props.theme}
         title={item.title}
-        currencies={[]}
-        votes={[]}
+        subtitle={item.description}
         published={moment(item.publishedAt).fromNow(true)}
         onPress={() => {
           Linking.openURL(item.url)

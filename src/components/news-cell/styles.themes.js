@@ -7,6 +7,7 @@ const styles = (theme: Theme) =>
   StyleSheet.create({
     title: { color: colors[theme].text },
     subtitle: { color: colors[theme].text },
+    date: { color: colors[theme].text },
     separator: { borderColor: colors[theme].separator },
   })
 
