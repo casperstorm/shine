@@ -1,0 +1,17 @@
+opt_out_usage
+fastlane_version "2.66.2"
+
+import "./compile/build.rb"
+import "./compile/signing.rb"
+
+if ENV["ENVFILE"].nil?
+  UI.user_error! "Invalid environment – please run 'ENVFILE=.env.[dev/production] bundle exec fastlane'"
+end
+
+# - After
+after_all do |lane|
+end
+
+# - Error
+error do |lane, exception|
+end

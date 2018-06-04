@@ -1,0 +1,4 @@
+# iOS
+app_identifier ENV["IOS_BUNDLE_ID"]
+apple_id ENV["APPLE_DEV_ID"]
+team_id ENV["APPLE_TEAM_ID"]
